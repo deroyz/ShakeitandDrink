@@ -20,33 +20,34 @@ package com.example.android.devbyteviewer.database
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import androidx.room.RoomDatabase
 
 
 @Dao
-interface VideoDao {
+interface DrinkDao {
 
-    @Query("select * from databasevideo")
-    fun getVideos(): LiveData<List<DatabaseVideo>>
+    @Query("select * from databasedrink")
+    fun getDirnks(): LiveData<List<DatabaseDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg videos: DatabaseVideo)
+    fun insertAll(vararg videos: DatabaseDrink)
 
 }
 
-@Database(entities = [DatabaseVideo::class], version = 1)
-abstract class VideosDatabase : RoomDatabase() {
-    abstract val videoDao: VideoDao
+@Database(entities = [DatabaseDrink::class], version = 1)
+abstract class DrinkDatabase : RoomDatabase() {
+    abstract val drinkDao: DrinkDao
 }
 
-private lateinit var INSTANCE: VideosDatabase
+private lateinit var INSTANCE: DrinkDatabase
 
-fun getDatabase(context: Context): VideosDatabase {
-    synchronized(VideosDatabase::class.java) {
+fun getDatabase(context: Context): DrinkDatabase {
+    synchronized(DrinkDatabase::class.java) {
         if (!::INSTANCE.isInitialized) {
             INSTANCE = Room.databaseBuilder(
                 context.applicationContext,
-                VideosDatabase::class.java,
-                "videos"
+                DrinkDatabase::class.java,
+                "dirnks"
             ).build()
         }
     }

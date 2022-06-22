@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.android.mycocktailtesting.databinding.FragmentDrinksBinding
 
-class DrinksFragment : Fragment() {
+class DrinkFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
