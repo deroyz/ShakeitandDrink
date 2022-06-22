@@ -7,7 +7,7 @@ import com.example.android.mycocktailtesting.network.NetworkDrink
 import com.example.android.mycocktailtesting.repository.DrinksRepository
 import kotlinx.coroutines.launch
 
-class DevByteViewModel(application: Application) : AndroidViewModel(application) {
+class DrinkViewModel(application: Application) : AndroidViewModel(application) {
 
     enum class CocktailApiStatus { LOADING, ERROR, DONE }
 
@@ -23,21 +23,14 @@ class DevByteViewModel(application: Application) : AndroidViewModel(application)
         get() = _drinks
 
     private val database = getDatabase(application)
-    private val videosRepository = DrinksRepository(database)
+    private val drinksRepository = DrinksRepository(database)
 
     init {
         viewModelScope.launch {
-            videosRepository.refreshDrinks()
+            drinksRepository.refreshDrinks()
         }
     }
-}
 
-class DrinkViewModelFactory(val app: Application) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DrinkViewModelFactory::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return DrinkViewModelFactory(app) as T
-        }
-        throw IllegalArgumentException("Unable to construct viewmodel")
-    }
+    val drinkList = drinksRepository.drinks
+
 }

@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class DrinksRepository(private val database: DrinkDatabase) {
-    val videos: LiveData<List<Drink>> = Transformations.map(database.drinkDao.getDirnks()) {
+    val drinks: LiveData<List<Drink>> = Transformations.map(database.drinkDao.getDirnks()) {
         it.asDomainModel()
     }
 

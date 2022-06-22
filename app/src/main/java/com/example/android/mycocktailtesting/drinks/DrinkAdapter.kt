@@ -9,14 +9,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.android.mycocktailtesting.R
 import com.example.android.mycocktailtesting.databinding.ListDrinkBinding
+import com.example.android.mycocktailtesting.domain.Drink
 import com.example.android.mycocktailtesting.network.NetworkDrink
 
-class DrinkAdapter : ListAdapter<NetworkDrink, DrinkAdapter.DrinkViewHolder>(DrinkDiffCallback()) {
+class DrinkAdapter : ListAdapter<Drink, DrinkAdapter.DrinkViewHolder>(DrinkDiffCallback()) {
 
     class DrinkViewHolder private constructor(val binding: ListDrinkBinding):
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: NetworkDrink) {
+        fun bind(item: Drink) {
             binding.ivDrinkCocktail
             Glide.with(binding.ivDrinkCocktail.context)
                 .load(item.strDrinkThumb)
@@ -39,12 +40,12 @@ class DrinkAdapter : ListAdapter<NetworkDrink, DrinkAdapter.DrinkViewHolder>(Dri
         }
     }
 
-    class DrinkDiffCallback: DiffUtil.ItemCallback<NetworkDrink>() {
-        override fun areItemsTheSame(oldItem: NetworkDrink, newItem: NetworkDrink): Boolean {
+    class DrinkDiffCallback: DiffUtil.ItemCallback<Drink>() {
+        override fun areItemsTheSame(oldItem: Drink, newItem: Drink): Boolean {
             return oldItem.idDrink == newItem.idDrink
         }
 
-        override fun areContentsTheSame(oldItem: NetworkDrink, newItem: NetworkDrink): Boolean {
+        override fun areContentsTheSame(oldItem: Drink, newItem: Drink): Boolean {
             return oldItem == newItem
         }
 
