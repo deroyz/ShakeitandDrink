@@ -24,7 +24,7 @@ private val moshi = Moshi.Builder()
     .build()
 
 /**
- * Main entry point for network access. Call like `Network.devbytes.getPlaylist()`
+ * Main entry point for network access. Call like `Network.cocktailDBService.getRandomCocktails()`
  */
 object Network{
     // Configure retrofit to parse JSON and use coroutines

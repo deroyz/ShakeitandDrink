@@ -15,19 +15,15 @@
  *
  */
 
-package com.example.android.devbyteviewer.database
-
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import androidx.room.RoomDatabase
-
 
 @Dao
 interface DrinkDao {
 
     @Query("select * from databasedrink")
-    fun getDirnks(): LiveData<List<DatabaseDrink>>
+    fun getDrinks(): LiveData<List<DatabaseDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg videos: DatabaseDrink)
@@ -47,7 +43,7 @@ fun getDatabase(context: Context): DrinkDatabase {
             INSTANCE = Room.databaseBuilder(
                 context.applicationContext,
                 DrinkDatabase::class.java,
-                "dirnks"
+                "drinks"
             ).build()
         }
     }
