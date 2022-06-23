@@ -10,7 +10,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.android.mycocktailtesting.R
 import com.example.android.mycocktailtesting.databinding.ListDrinkBinding
 import com.example.android.mycocktailtesting.domain.Drink
-import com.example.android.mycocktailtesting.network.NetworkDrink
 
 class DrinkAdapter : ListAdapter<Drink, DrinkAdapter.DrinkViewHolder>(DrinkDiffCallback()) {
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-
+package com.example.android.mycocktailtesting.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

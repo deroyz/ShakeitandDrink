@@ -4,9 +4,9 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.mycocktailtesting.database.getDatabase
 
 import com.example.android.mycocktailtesting.repository.DrinksRepository
-import getDatabase
 import kotlinx.coroutines.launch
 
 class DrinkViewModel(application: Application) : AndroidViewModel(application) {

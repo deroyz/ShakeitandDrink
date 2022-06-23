@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+package com.example.android.mycocktailtesting.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -26,7 +27,7 @@ interface DrinkDao {
     fun getDrinks(): LiveData<List<DatabaseDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg videos: DatabaseDrink)
+    fun insertAll(vararg drinks: DatabaseDrink)
 
 }
 

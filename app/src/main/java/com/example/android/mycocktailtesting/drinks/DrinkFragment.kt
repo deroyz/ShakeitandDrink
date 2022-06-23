@@ -15,9 +15,6 @@ import com.example.android.mycocktailtesting.databinding.FragmentDrinksBinding
 
 class DrinkFragment : Fragment() {
 
-    private lateinit var viewModel: DrinkViewModel
-    private lateinit var viewModelFactory: DrinkViewModelFactory
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,14 +23,17 @@ class DrinkFragment : Fragment() {
     ): View? {
         Log.e("DrinkFragment", "onCreateView1")
 
-        val activity = requireNotNull(this.activity)
-
-        viewModelFactory = DrinkViewModelFactory(activity.application)
-        viewModel = ViewModelProvider(this, viewModelFactory)[DrinkViewModel::class.java]
-        Log.e("DrinkFragment", "$viewModel")
 
         val binding = FragmentDrinksBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        val activity = requireNotNull(this.activity)
+
+        val viewModelFactory = DrinkViewModelFactory(activity.application)
+        Log.e("DrinkFragment", "$viewModelFactory")
+
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(DrinkViewModel::class.java)
+        Log.e("DrinkFragment", "$viewModel")
 
         val drinkAdapter = DrinkAdapter()
         binding.rvDrinks.adapter = drinkAdapter

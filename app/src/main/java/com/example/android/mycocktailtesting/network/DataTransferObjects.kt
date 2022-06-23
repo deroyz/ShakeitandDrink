@@ -1,6 +1,6 @@
 package com.example.android.mycocktailtesting.network
 
-import DatabaseDrink
+import com.example.android.mycocktailtesting.database.DatabaseDrink
 import com.example.android.mycocktailtesting.domain.Drink
 import com.squareup.moshi.JsonClass
 
