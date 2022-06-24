@@ -21,8 +21,6 @@ class DrinkFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-        Log.e("DrinkFragment", "onCreateView1")
-
 
         val binding = FragmentDrinksBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -30,14 +28,10 @@ class DrinkFragment : Fragment() {
         val activity = requireNotNull(this.activity)
 
         val viewModelFactory = DrinkViewModelFactory(activity.application)
-        Log.e("DrinkFragment", "$viewModelFactory")
-
         val viewModel = ViewModelProvider(this, viewModelFactory).get(DrinkViewModel::class.java)
-        Log.e("DrinkFragment", "$viewModel")
 
         val drinkAdapter = DrinkAdapter()
         binding.rvDrinks.adapter = drinkAdapter
-
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
         binding.rvDrinks.layoutManager = layoutManager
 

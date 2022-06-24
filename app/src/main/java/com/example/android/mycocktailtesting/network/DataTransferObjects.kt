@@ -1,6 +1,6 @@
 package com.example.android.mycocktailtesting.network
 
-import com.example.android.mycocktailtesting.database.DatabaseDrink
+import com.example.android.mycocktailtesting.database.DatabaseRandomDrink
 import com.example.android.mycocktailtesting.domain.Drink
 import com.squareup.moshi.JsonClass
 
@@ -93,9 +93,9 @@ fun NetworkDrinkContainer.asDomainModel(): List<Drink> {
     }
 }
 
-fun NetworkDrinkContainer.asDatabaseModel(): Array<DatabaseDrink> {
+fun NetworkDrinkContainer.asDatabaseModel(): Array<DatabaseRandomDrink> {
     return drinks.map {
-        DatabaseDrink(
+        DatabaseRandomDrink(
             idDrink = it.idDrink,
             strDrink = it.strDrink,
             strCategory = it.strCategory,

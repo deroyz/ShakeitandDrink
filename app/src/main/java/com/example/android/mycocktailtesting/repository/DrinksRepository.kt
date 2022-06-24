@@ -12,14 +12,21 @@ import kotlinx.coroutines.withContext
 
 class DrinksRepository(private val database: DrinkDatabase) {
 
-    val drinks: LiveData<List<Drink>> = Transformations.map(database.drinkDao.getDrinks()) {
+    val drinks: LiveData<List<Drink>> = Transformations.map(database.drinkDao.getRandomDrinks()) {
         it.asDomainModel()
     }
 
-    suspend fun refreshDrinks() {
+    suspend fun refreshRandomDrinks() {
         withContext(Dispatchers.IO) {
             val randomCocktails = Network.cocktailDBService.getRandomCocktails().await()
-            database.drinkDao.insertAll(*randomCocktails.asDatabaseModel())
+            database.drinkDao.insertAllRandomDrinks(*randomCocktails.asDatabaseModel())
         }
     }
+
+//    suspend fun refreshPopularDrinks() {
+//        withContext(Dispatchers.IO) {
+//            val popularCocktails = Network.cocktailDBService.getPopularCocktails().await()
+//            database.drinkDao.insertAll(*popularCocktails.asDatabaseModel())
+//        }
+//    }
 }

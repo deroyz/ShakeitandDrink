@@ -23,15 +23,21 @@ import androidx.room.*
 @Dao
 interface DrinkDao {
 
-    @Query("select * from databasedrink")
-    fun getDrinks(): LiveData<List<DatabaseDrink>>
+    @Query("select * from databaserandomdrink")
+    fun getRandomDrinks(): LiveData<List<DatabaseRandomDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg drinks: DatabaseDrink)
+    fun insertAllRandomDrinks(vararg drinks: DatabaseRandomDrink)
+
+    @Query("select * from databasepopulardrink")
+    fun getPopularDrinks(): LiveData<List<DatabaseRandomDrink>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun InsertAllPopularDrinks (vararg drinks: DatabaseRandomDrink)
 
 }
 
-@Database(entities = [DatabaseDrink::class], version = 1)
+@Database(entities = [DatabaseRandomDrink::class, DatabasePopularDrink::class], version = 1)
 abstract class DrinkDatabase : RoomDatabase() {
     abstract val drinkDao: DrinkDao
 }

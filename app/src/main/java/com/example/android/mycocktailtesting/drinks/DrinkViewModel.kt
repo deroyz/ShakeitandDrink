@@ -31,7 +31,7 @@ class DrinkViewModel(application: Application) : AndroidViewModel(application) {
         Log.e("DrinkViewModel", "init1")
 
         viewModelScope.launch {
-            drinksRepository.refreshDrinks()
+            drinksRepository.refreshRandomDrinks()
             Log.e("DrinkViewModel", "init2")
 
         }

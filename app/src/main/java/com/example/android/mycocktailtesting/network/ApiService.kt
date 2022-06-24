@@ -13,6 +13,9 @@ private const val BASE_URL = "https://www.thecocktaildb.com/api/json/v2/9973533/
 interface CocktailDBService{
     @GET("randomselection.php")
     fun getRandomCocktails(): Deferred<NetworkDrinkContainer>
+
+    @GET("popular.php")
+    fun getPopularCocktails(): Deferred<NetworkDrinkContainer>
 }
 
 /**
