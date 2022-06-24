@@ -23,10 +23,10 @@ class DrinksRepository(private val database: DrinkDatabase) {
         }
     }
 
-//    suspend fun refreshPopularDrinks() {
-//        withContext(Dispatchers.IO) {
-//            val popularCocktails = Network.cocktailDBService.getPopularCocktails().await()
-//            database.drinkDao.insertAll(*popularCocktails.asDatabaseModel())
-//        }
-//    }
+    suspend fun refreshPopularDrinks() {
+        withContext(Dispatchers.IO) {
+            val popularCocktails = Network.cocktailDBService.getPopularCocktails().await()
+            database.drinkDao.insertAllPopularDrinks(*popularCocktails.asDatabaseModel())
+        }
+    }
 }

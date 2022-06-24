@@ -33,7 +33,7 @@ interface DrinkDao {
     fun getPopularDrinks(): LiveData<List<DatabaseRandomDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun InsertAllPopularDrinks (vararg drinks: DatabaseRandomDrink)
+    fun insertAllPopularDrinks (vararg drinks: DatabaseRandomDrink)
 
 }
 
