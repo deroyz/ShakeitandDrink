@@ -18,7 +18,14 @@ package com.example.android.mycocktailtesting.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
+
+enum class CocktailDatabaseFilter(val value: String) {
+    SHOW_TODAYS("todays"), SHOW_POPULAR("popular"), SHOW_FAVORITE(
+        "favorite"
+    )
+}
 
 @Dao
 interface DrinkDao {
@@ -30,10 +37,10 @@ interface DrinkDao {
     fun insertAllRandomDrinks(vararg drinks: DatabaseRandomDrink)
 
     @Query("select * from databasepopulardrink")
-    fun getPopularDrinks(): LiveData<List<DatabaseRandomDrink>>
+    fun getPopularDrinks(): LiveData<List<DatabasePopularDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAllPopularDrinks (vararg drinks: DatabaseRandomDrink)
+    fun insertAllPopularDrinks (vararg drinks: DatabasePopularDrink)
 
 }
 

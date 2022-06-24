@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list_item"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -20,23 +20,8 @@
             android:layout_height="150dp"
             android:layout_margin="16dp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="16dp"
-            android:orientation="vertical">
 
-            <CheckBox
-                android:id="@+id/btn_favorite"
-                android:layout_width="31dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:button="@android:drawable/btn_star_big_on" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_drink_cocktailName"

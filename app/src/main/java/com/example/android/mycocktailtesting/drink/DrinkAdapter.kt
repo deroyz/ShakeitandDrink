@@ -1,4 +1,4 @@
-package com.example.android.mycocktailtesting.drinks
+package com.example.android.mycocktailtesting.drink
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -6,7 +6,7 @@
     app:startDestination="@id/drinkFragment">
     <fragment
         android:id="@+id/drinkFragment"
-        android:name="com.example.android.mycocktailtesting.drinks.DrinkFragment"
+        android:name="com.example.android.mycocktailtesting.drink.DrinkFragment"
         android:label="fragment_drinks"
         tools:layout="@layout/fragment_drinks" />
 </navigation>
