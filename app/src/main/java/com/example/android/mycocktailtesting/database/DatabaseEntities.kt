@@ -20,7 +20,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.android.mycocktailtesting.domain.Drink
 
-@Entity
+@Entity(tableName = "randomdrinks")
 data class DatabaseRandomDrink constructor(
     @PrimaryKey
     val idDrink: Double,
@@ -61,7 +61,7 @@ data class DatabaseRandomDrink constructor(
 //    val strMeasure15: String?
 )
 
-@Entity
+@Entity(tableName = "populardrinks")
 data class DatabasePopularDrink constructor(
     @PrimaryKey
     val idDrink: Double,

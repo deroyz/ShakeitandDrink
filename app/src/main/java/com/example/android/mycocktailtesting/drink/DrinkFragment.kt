@@ -30,7 +30,7 @@ class DrinkFragment : Fragment() {
         val activity = requireNotNull(this.activity)
 
         val viewModelFactory = DrinkViewModelFactory(activity.application)
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(DrinkViewModel::class.java)
+        val viewModel = ViewModelProvider(this, viewModelFactory)[DrinkViewModel::class.java]
         this.viewModel = viewModel
 
         val drinkAdapter = DrinkAdapter()
@@ -40,7 +40,6 @@ class DrinkFragment : Fragment() {
 
         viewModel.drinkList.observe(viewLifecycleOwner, Observer {
             drinkAdapter.submitList(it)
-            Log.e("DrinkFragment", "List updated ID = ${it.get(1).strDrink}")
         })
 
         viewModel.filter.observe(viewLifecycleOwner, Observer {

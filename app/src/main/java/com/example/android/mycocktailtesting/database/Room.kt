@@ -30,17 +30,17 @@ enum class CocktailDatabaseFilter(val value: String) {
 @Dao
 interface DrinkDao {
 
-    @Query("select * from databaserandomdrink")
+    @Query("select * from randomdrinks")
     fun getRandomDrinks(): LiveData<List<DatabaseRandomDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllRandomDrinks(vararg drinks: DatabaseRandomDrink)
 
-    @Query("select * from databasepopulardrink")
+    @Query("select * from populardrinks")
     fun getPopularDrinks(): LiveData<List<DatabasePopularDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAllPopularDrinks (vararg drinks: DatabasePopularDrink)
+    fun insertAllPopularDrinks(vararg drinks: DatabasePopularDrink)
 
 }
 

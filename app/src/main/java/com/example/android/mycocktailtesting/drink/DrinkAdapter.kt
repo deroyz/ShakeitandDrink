@@ -47,7 +47,6 @@ class DrinkAdapter : ListAdapter<Drink, DrinkAdapter.DrinkViewHolder>(DrinkDiffC
         override fun areContentsTheSame(oldItem: Drink, newItem: Drink): Boolean {
             return oldItem == newItem
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinkViewHolder {
