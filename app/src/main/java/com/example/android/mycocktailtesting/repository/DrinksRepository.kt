@@ -22,12 +22,23 @@ class DrinksRepository(val database: DrinkDatabase) {
             it.asDomainModelPopularDrink()
         }
 
+    var drinks: LiveData<List<Drink>> = randomDrinks
+
+    fun updateDrinks(filter: CocktailDatabaseFilter) {
+        drinks = when (filter) {
+            CocktailDatabaseFilter.SHOW_TODAYS -> randomDrinks
+            CocktailDatabaseFilter.SHOW_POPULAR -> popularDrinks
+            CocktailDatabaseFilter.SHOW_FAVORITE -> popularDrinks
+        }
+    }
+
     suspend fun refreshRandomDrinks() {
         withContext(Dispatchers.IO) {
             val randomCocktails = Network.cocktailDBService.getRandomCocktails().await()
             database.drinkDao.insertAllRandomDrinks(*randomCocktails.asDatabaseModelRandomDrink())
         }
     }
+
     suspend fun refreshPopularDrinks() {
         withContext(Dispatchers.IO) {
             val popularCocktails = Network.cocktailDBService.getPopularCocktails().await()

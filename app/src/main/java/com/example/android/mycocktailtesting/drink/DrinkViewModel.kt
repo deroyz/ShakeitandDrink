@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.android.mycocktailtesting.database.CocktailDatabaseFilter
 import com.example.android.mycocktailtesting.database.getDatabase
-import com.example.android.mycocktailtesting.domain.Drink
 import com.example.android.mycocktailtesting.repository.DrinksRepository
 import kotlinx.coroutines.launch
 
@@ -30,29 +29,21 @@ class DrinkViewModel(application: Application) : AndroidViewModel(application) {
     val filter: LiveData<CocktailDatabaseFilter>
         get() = _filter
 
-
-    var drinkList: LiveData<List<Drink>> = drinksRepository.randomDrinks
-
     init {
         Log.e("DrinkViewModel", "ViewModel Init")
 
         viewModelScope.launch {
             drinksRepository.refreshRandomDrinks()
             drinksRepository.refreshPopularDrinks()
+            _filter.value = CocktailDatabaseFilter.SHOW_TODAYS
         }
     }
+
+    val randomDrinkList = drinksRepository.randomDrinks
+    val popularDrinkList = drinksRepository.popularDrinks
 
     fun updateFilter(filter: CocktailDatabaseFilter) {
         Log.e("ViewModel", "updateFilter to $filter")
         _filter.value = filter
-    }
-
-    fun updateDrinkList() {
-        Log.e("ViewModel", "updateDrinkList filter value is ${_filter.value}")
-        drinkList = when (_filter.value) {
-            CocktailDatabaseFilter.SHOW_TODAYS -> drinksRepository.randomDrinks
-            CocktailDatabaseFilter.SHOW_POPULAR -> drinksRepository.popularDrinks
-            else -> drinksRepository.popularDrinks
-        }
     }
 }
