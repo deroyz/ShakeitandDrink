@@ -3,10 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/drinkFragment">
+    app:startDestination="@id/drinksFragment">
+
     <fragment
-        android:id="@+id/drinkFragment"
-        android:name="com.example.android.mycocktailtesting.drink.DrinkFragment"
-        android:label="fragment_drinks"
-        tools:layout="@layout/fragment_drinks" />
+        android:id="@+id/drinksFragment"
+        android:name="com.example.android.mycocktailtesting.drinks.DrinksFragment"
+        android:label="DrinksFragment"
+        tools:layout="@layout/fragment_drinks" >
+        <action
+            android:id="@+id/action_showDetail"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.android.mycocktailtesting.detail.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail" >
+        <argument android:name="selectedDrink"
+            app:argType="com.example.android.mycocktailtesting.domain.Drink" />
+    </fragment>
+
 </navigation>

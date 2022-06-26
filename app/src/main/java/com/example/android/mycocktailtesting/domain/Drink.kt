@@ -1,5 +1,6 @@
 package com.example.android.mycocktailtesting.domain
 
+@Parcelize
 data class Drink(
     val idDrink: Double,
     val strDrink: String,
@@ -38,3 +39,5 @@ data class Drink(
 //    val strMeasure14: String?,
 //    val strMeasure15: String?
 )
+
+annotation class Parcelize

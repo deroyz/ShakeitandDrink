@@ -1,4 +1,4 @@
-package com.example.android.mycocktailtesting.drink
+package com.example.android.mycocktailtesting.drinks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,10 +11,10 @@ import com.example.android.mycocktailtesting.R
 import com.example.android.mycocktailtesting.databinding.ListDrinkBinding
 import com.example.android.mycocktailtesting.domain.Drink
 
-class DrinkAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<Drink, DrinkAdapter.DrinkViewHolder>(DrinkDiffCallback()) {
+class DrinksAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<Drink, DrinksAdapter.DrinksViewHolder>(DrinkDiffCallback()) {
 
-    class DrinkViewHolder private constructor(val binding: ListDrinkBinding) :
+    class DrinksViewHolder private constructor(val binding: ListDrinkBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Drink) {
@@ -31,11 +31,11 @@ class DrinkAdapter(private val onClickListener: OnClickListener) :
         }
 
         companion object {
-            fun from(parent: ViewGroup): DrinkViewHolder {
+            fun from(parent: ViewGroup): DrinksViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
 
                 val binding = ListDrinkBinding.inflate(layoutInflater, parent, false)
-                return DrinkViewHolder(binding)
+                return DrinksViewHolder(binding)
             }
         }
     }
@@ -50,11 +50,11 @@ class DrinkAdapter(private val onClickListener: OnClickListener) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinkViewHolder {
-        return DrinkViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinksViewHolder {
+        return DrinksViewHolder.from(parent)
     }
 
-    override fun onBindViewHolder(holder: DrinkViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DrinksViewHolder, position: Int) {
         val item = getItem(position)
         holder.itemView.setOnClickListener { onClickListener.onClick(item) }
         holder.bind(item)
