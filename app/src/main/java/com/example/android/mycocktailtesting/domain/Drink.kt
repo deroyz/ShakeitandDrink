@@ -1,4 +1,6 @@
 package com.example.android.mycocktailtesting.domain
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Drink(
@@ -38,6 +40,6 @@ data class Drink(
 //    val strMeasure13: String?,
 //    val strMeasure14: String?,
 //    val strMeasure15: String?
-)
+) : Parcelable
 
 annotation class Parcelize
