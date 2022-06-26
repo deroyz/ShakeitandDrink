@@ -3,6 +3,7 @@ package com.example.android.mycocktailtesting.drink
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -36,9 +37,9 @@ class DrinkFragment : Fragment() {
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
         binding.rvDrinks.layoutManager = layoutManager
 
-        val randomDrinkAdapter = DrinkAdapter()
-        val popularDrinkAdapter = DrinkAdapter()
-        val favoriteDrinkAdapter = DrinkAdapter()
+        val randomDrinkAdapter = DrinkAdapter(DrinkAdapter.OnClickListener{viewModel.showToastMsg(it)})
+        val popularDrinkAdapter = DrinkAdapter(DrinkAdapter.OnClickListener{viewModel.showToastMsg(it)})
+        val favoriteDrinkAdapter = DrinkAdapter(DrinkAdapter.OnClickListener{viewModel.showToastMsg(it)})
 
         viewModel.randomDrinkList.observe(viewLifecycleOwner, Observer {
             randomDrinkAdapter.submitList(it)
@@ -60,7 +61,6 @@ class DrinkFragment : Fragment() {
         })
 
         setHasOptionsMenu(true)
-
         return view
     }
 

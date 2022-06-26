@@ -2,12 +2,14 @@ package com.example.android.mycocktailtesting.drink
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.android.mycocktailtesting.database.CocktailDatabaseFilter
 import com.example.android.mycocktailtesting.database.getDatabase
+import com.example.android.mycocktailtesting.domain.Drink
 import com.example.android.mycocktailtesting.repository.DrinksRepository
 import kotlinx.coroutines.launch
 
@@ -46,5 +48,9 @@ class DrinkViewModel(application: Application) : AndroidViewModel(application) {
     fun updateFilter(filter: CocktailDatabaseFilter) {
         Log.e("ViewModel", "updateFilter to $filter")
         _filter.value = filter
+    }
+
+    fun showToastMsg(drink: Drink) {
+        Toast.makeText(this.getApplication(), drink.strDrink.toString(), Toast.LENGTH_SHORT).show()
     }
 }

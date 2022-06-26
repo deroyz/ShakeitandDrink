@@ -11,9 +11,10 @@ import com.example.android.mycocktailtesting.R
 import com.example.android.mycocktailtesting.databinding.ListDrinkBinding
 import com.example.android.mycocktailtesting.domain.Drink
 
-class DrinkAdapter : ListAdapter<Drink, DrinkAdapter.DrinkViewHolder>(DrinkDiffCallback()) {
+class DrinkAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<Drink, DrinkAdapter.DrinkViewHolder>(DrinkDiffCallback()) {
 
-    class DrinkViewHolder private constructor(val binding: ListDrinkBinding):
+    class DrinkViewHolder private constructor(val binding: ListDrinkBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Drink) {
@@ -39,7 +40,7 @@ class DrinkAdapter : ListAdapter<Drink, DrinkAdapter.DrinkViewHolder>(DrinkDiffC
         }
     }
 
-    class DrinkDiffCallback: DiffUtil.ItemCallback<Drink>() {
+    class DrinkDiffCallback : DiffUtil.ItemCallback<Drink>() {
         override fun areItemsTheSame(oldItem: Drink, newItem: Drink): Boolean {
             return oldItem.idDrink == newItem.idDrink
         }
@@ -55,7 +56,12 @@ class DrinkAdapter : ListAdapter<Drink, DrinkAdapter.DrinkViewHolder>(DrinkDiffC
 
     override fun onBindViewHolder(holder: DrinkViewHolder, position: Int) {
         val item = getItem(position)
+        holder.itemView.setOnClickListener { onClickListener.onClick(item) }
         holder.bind(item)
+    }
+
+    class OnClickListener(val clickListener: (drink: Drink) -> Unit) {
+        fun onClick(drink: Drink) = clickListener(drink)
     }
 }
 
