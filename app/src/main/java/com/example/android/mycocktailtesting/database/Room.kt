@@ -30,21 +30,27 @@ enum class CocktailDatabaseFilter(val value: String) {
 @Dao
 interface DrinkDao {
 
+    // RandomDrinks DAO
     @Query("select * from randomdrinks")
     fun getRandomDrinks(): LiveData<List<DatabaseRandomDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllRandomDrinks(vararg drinks: DatabaseRandomDrink)
 
+    // PopularDrinks DAO
     @Query("select * from populardrinks")
     fun getPopularDrinks(): LiveData<List<DatabasePopularDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllPopularDrinks(vararg drinks: DatabasePopularDrink)
 
+    // FavoriteDrinks DAO
+    @Query("select * from favoritedrinks")
+    fun getFavoriteDrinks(): LiveData<List<DatabaseFavoriteDrink>>
+
 }
 
-@Database(entities = [DatabaseRandomDrink::class, DatabasePopularDrink::class], version = 1)
+@Database(entities = [DatabaseRandomDrink::class, DatabasePopularDrink::class, DatabaseFavoriteDrink::class], version = 1)
 abstract class DrinkDatabase : RoomDatabase() {
     abstract val drinkDao: DrinkDao
 }

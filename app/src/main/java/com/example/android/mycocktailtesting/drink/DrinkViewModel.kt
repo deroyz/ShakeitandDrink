@@ -41,6 +41,7 @@ class DrinkViewModel(application: Application) : AndroidViewModel(application) {
 
     val randomDrinkList = drinksRepository.randomDrinks
     val popularDrinkList = drinksRepository.popularDrinks
+    val favoriteDrink = drinksRepository.favoriteDrinks
 
     fun updateFilter(filter: CocktailDatabaseFilter) {
         Log.e("ViewModel", "updateFilter to $filter")

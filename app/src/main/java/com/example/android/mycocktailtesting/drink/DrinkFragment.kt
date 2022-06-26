@@ -33,25 +33,29 @@ class DrinkFragment : Fragment() {
         val viewModel = ViewModelProvider(this, viewModelFactory)[DrinkViewModel::class.java]
         this.viewModel = viewModel
 
-        val randomDrinkAdapter = DrinkAdapter()
-        val popularDrinkAdapter = DrinkAdapter()
-
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
         binding.rvDrinks.layoutManager = layoutManager
+
+        val randomDrinkAdapter = DrinkAdapter()
+        val popularDrinkAdapter = DrinkAdapter()
+        val favoriteDrinkAdapter = DrinkAdapter()
 
         viewModel.randomDrinkList.observe(viewLifecycleOwner, Observer {
             randomDrinkAdapter.submitList(it)
         })
-
         viewModel.popularDrinkList.observe(viewLifecycleOwner, Observer {
             popularDrinkAdapter.submitList(it)
         })
-
+        viewModel.favoriteDrink.observe(viewLifecycleOwner, Observer {
+            favoriteDrinkAdapter.submitList(it)
+        })
         viewModel.filter.observe(viewLifecycleOwner, Observer { filter ->
             when (filter) {
                 CocktailDatabaseFilter.SHOW_TODAYS -> binding.rvDrinks.adapter = randomDrinkAdapter
-                CocktailDatabaseFilter.SHOW_POPULAR -> binding.rvDrinks.adapter = popularDrinkAdapter
-                CocktailDatabaseFilter.SHOW_FAVORITE -> binding.rvDrinks.adapter = popularDrinkAdapter
+                CocktailDatabaseFilter.SHOW_POPULAR -> binding.rvDrinks.adapter =
+                    popularDrinkAdapter
+                CocktailDatabaseFilter.SHOW_FAVORITE -> binding.rvDrinks.adapter =
+                    favoriteDrinkAdapter
             }
         })
 
@@ -75,6 +79,4 @@ class DrinkFragment : Fragment() {
         )
         return true
     }
-
-
 }

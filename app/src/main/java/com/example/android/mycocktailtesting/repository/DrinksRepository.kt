@@ -22,15 +22,10 @@ class DrinksRepository(val database: DrinkDatabase) {
             it.asDomainModelPopularDrink()
         }
 
-    var drinks: LiveData<List<Drink>> = randomDrinks
-
-    fun updateDrinks(filter: CocktailDatabaseFilter) {
-        drinks = when (filter) {
-            CocktailDatabaseFilter.SHOW_TODAYS -> randomDrinks
-            CocktailDatabaseFilter.SHOW_POPULAR -> popularDrinks
-            CocktailDatabaseFilter.SHOW_FAVORITE -> popularDrinks
+    val favoriteDrinks: LiveData<List<Drink>> =
+        Transformations.map(database.drinkDao.getFavoriteDrinks()) {
+            it.asDomainModelFavoriteDrink()
         }
-    }
 
     suspend fun refreshRandomDrinks() {
         withContext(Dispatchers.IO) {
@@ -45,4 +40,11 @@ class DrinksRepository(val database: DrinkDatabase) {
             database.drinkDao.insertAllPopularDrinks(*popularCocktails.asDatabaseModelPopularDrink())
         }
     }
+
+//    suspend fun addFavoriteDrinkById() {
+//        withContext(Dispatchers.IO) {
+//            val popularCocktails = Network.cocktailDBService.getPopularCocktails().await()
+//            database.drinkDao.insertAllPopularDrinks(*popularCocktails.asDatabaseModelPopularDrink())
+//        }
+//    }
 }
