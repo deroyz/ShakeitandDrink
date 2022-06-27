@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Projects/MyCocktailTesting/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.383" />
+        <entry key="..\:/Android Projects/MyCocktailTesting/app/src/main/res/drawable/ic_broken_image.xml" value="0.383" />
+        <entry key="..\:/Android Projects/MyCocktailTesting/app/src/main/res/drawable/ic_launcher_background.xml" value="0.383" />
+        <entry key="..\:/Android Projects/MyCocktailTesting/app/src/main/res/drawable/loading_img.xml" value="0.383" />
         <entry key="..\:/Android Projects/MyCocktailTesting/app/src/main/res/layout/activity_main.xml" value="0.1947463768115942" />
-        <entry key="..\:/Android Projects/MyCocktailTesting/app/src/main/res/layout/fragment_detail.xml" value="0.20104166666666667" />
+        <entry key="..\:/Android Projects/MyCocktailTesting/app/src/main/res/layout/fragment_detail.xml" value="0.5" />
         <entry key="..\:/Android Projects/MyCocktailTesting/app/src/main/res/layout/fragment_drinks.xml" value="0.5" />
         <entry key="..\:/Android Projects/MyCocktailTesting/app/src/main/res/layout/list_drink.xml" value="0.2015625" />
         <entry key="..\:/Android Projects/MyCocktailTesting/app/src/main/res/menu/drink_menu.xml" value="0.19739583333333333" />

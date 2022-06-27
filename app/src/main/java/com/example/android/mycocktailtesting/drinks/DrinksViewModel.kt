@@ -50,9 +50,11 @@ class DrinksViewModel(application: Application) : AndroidViewModel(application) 
         Log.e("ViewModel", "updateFilter to $filter")
         _filter.value = filter
     }
+
     fun navigateToSelectedDrinkComplete() {
         _navigateToSelectedDrink.value = null
     }
+
     fun navigateToSelectedDrink(drink: Drink) {
         _navigateToSelectedDrink.value = drink
     }

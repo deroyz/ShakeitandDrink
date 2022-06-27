@@ -47,4 +47,5 @@ class DrinksRepository(val database: DrinkDatabase) {
 //            database.drinkDao.insertAllPopularDrinks(*popularCocktails.asDatabaseModelPopularDrink())
 //        }
 //    }
+
 }

@@ -48,6 +48,9 @@ interface DrinkDao {
     @Query("select * from favoritedrinks")
     fun getFavoriteDrinks(): LiveData<List<DatabaseFavoriteDrink>>
 
+    @Query("SELECT EXISTS(select * from favoritedrinks WHERE idDrink = :id)")
+    fun checkFavoriteById(id: Double): LiveData<Boolean>
+
 }
 
 @Database(entities = [DatabaseRandomDrink::class, DatabasePopularDrink::class, DatabaseFavoriteDrink::class], version = 1)
