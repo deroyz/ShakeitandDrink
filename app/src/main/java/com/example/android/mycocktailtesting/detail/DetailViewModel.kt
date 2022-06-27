@@ -28,21 +28,36 @@ class DetailViewModel(drink: Drink, application: Application) : AndroidViewModel
 
     init {
         _selectedDrink.value = drink
-        viewModelScope.launch{
+        viewModelScope.launch {
             _isFavorite.value = checkFavorite(drink).value
+            Log.e("DetailViewModel", "updatedFavoriteStatus: ${_isFavorite.value}")
         }
     }
 
-
     private fun checkFavorite(drink: Drink): LiveData<Boolean> {
-          return database.drinkDao.checkFavoriteById(drink.idDrink)
+        return database.drinkDao.checkFavoriteById(drink.idDrink)
     }
 
-    fun viewBinding(binding: FragmentDetailBinding, drink: Drink) {
+    fun favoriteBtnActive() {
+        Log.e("DetailViewModel", "favoriteBtnActive")
+    }
+
+    fun favoriteBtnInactive() {
+        Log.e("DetailViewModel", "favoriteBtnInactive")
+
+    }
+
+    fun updateFavoriteStatus() {
+        _isFavorite.value = _isFavorite.value != true
+        Log.e("DetailViewModel", "updatedFavoriteStatus: ${_isFavorite.value}")
+    }
+
+    fun viewBinding(drink: Drink, binding: FragmentDetailBinding) {
         binding.strDrink.text = drink.strDrink
         binding.strCategory.text = drink.strCategory
         binding.strGlass.text = drink.strGlass
         binding.strInstructions.text = drink.strInstructions
+
         binding.strDrinkThumb
         Glide.with(binding.strDrinkThumb.context)
             .load(drink.strDrinkThumb)
@@ -52,10 +67,6 @@ class DetailViewModel(drink: Drink, application: Application) : AndroidViewModel
                     .error(R.drawable.ic_broken_image)
             )
             .into(binding.strDrinkThumb)
-    }
-
-    fun updateFavorite() {
-        _isFavorite.value = _isFavorite.value != true
     }
 
 }

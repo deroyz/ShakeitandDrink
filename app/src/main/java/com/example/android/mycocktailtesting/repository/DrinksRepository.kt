@@ -34,6 +34,17 @@ class DrinksRepository(val database: DrinkDatabase) {
         }
     }
 
+    suspend fun inputFavoriteDrink(drink: Drink) {
+        withContext(Dispatchers.IO) {
+
+        }
+    }
+
+    suspend fun deleteFavoriteDrink(idDrink: Double) {
+        withContext(Dispatchers.IO) {
+        }
+    }
+
     suspend fun refreshPopularDrinks() {
         withContext(Dispatchers.IO) {
             val popularCocktails = Network.cocktailDBService.getPopularCocktails().await()

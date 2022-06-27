@@ -30,17 +30,26 @@ class DetailFragment : Fragment() {
         val viewModel = ViewModelProvider(this, viewModelFactory)[DetailViewModel::class.java]
         this.viewModel = viewModel
 
+        binding.imageButton2.setOnClickListener(View.OnClickListener {
+            viewModel.updateFavoriteStatus()
+        })
+
         viewModel.selectedDrink.observe(viewLifecycleOwner, Observer {
             if (null != it) {
-                viewModel.viewBinding(binding, it)
+                viewModel.viewBinding(it, binding)
             }
         })
 
-//        viewModel.isFavorite.observe(viewLifecycleOwner, Observer {
-//            if(it){
-//                binding.imageButton2.
-//            }
-//        })
+        viewModel.isFavorite.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it) {
+                    viewModel.favoriteBtnActive()
+                } else {
+                    viewModel.favoriteBtnInactive()
+                }
+            }
+        })
+
         return binding.root
     }
 }

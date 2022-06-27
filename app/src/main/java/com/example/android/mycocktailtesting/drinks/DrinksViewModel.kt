@@ -32,6 +32,10 @@ class DrinksViewModel(application: Application) : AndroidViewModel(application) 
     val navigateToSelectedDrink: LiveData<Drink>
         get() = _navigateToSelectedDrink
 
+    val randomDrinkList = drinksRepository.randomDrinks
+    val popularDrinkList = drinksRepository.popularDrinks
+    val favoriteDrink = drinksRepository.favoriteDrinks
+
     init {
         Log.e("DrinkViewModel", "ViewModel Init")
 
@@ -41,10 +45,6 @@ class DrinksViewModel(application: Application) : AndroidViewModel(application) 
             _filter.value = CocktailDatabaseFilter.SHOW_TODAYS
         }
     }
-
-    val randomDrinkList = drinksRepository.randomDrinks
-    val popularDrinkList = drinksRepository.popularDrinks
-    val favoriteDrink = drinksRepository.favoriteDrinks
 
     fun updateFilter(filter: CocktailDatabaseFilter) {
         Log.e("ViewModel", "updateFilter to $filter")
