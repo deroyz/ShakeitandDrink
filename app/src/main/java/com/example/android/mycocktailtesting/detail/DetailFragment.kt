@@ -34,20 +34,22 @@ class DetailFragment : Fragment() {
         this.viewModel = viewModel
 
         // Setup ViewBinding
-        binding.strDrink.text = drink.strDrink
-        binding.strCategory.text = drink.strCategory
-        binding.strGlass.text = drink.strGlass
-        binding.strInstructions.text = drink.strInstructions
+        viewModel.selectedDrink.observe(viewLifecycleOwner, Observer {
+            binding.strDrink.text = it.strDrink
+            binding.strCategory.text = it.strCategory
+            binding.strGlass.text = it.strGlass
+            binding.strInstructions.text = it.strInstructions
 
-        binding.strDrinkThumb
-        Glide.with(binding.strDrinkThumb.context)
-            .load(drink.strDrinkThumb)
-            .apply(
-                RequestOptions()
-                    .placeholder(R.drawable.loading_animation)
-                    .error(R.drawable.ic_broken_image)
-            )
-            .into(binding.strDrinkThumb)
+            binding.strDrinkThumb
+            Glide.with(binding.strDrinkThumb.context)
+                .load(it.strDrinkThumb)
+                .apply(
+                    RequestOptions()
+                        .placeholder(R.drawable.loading_animation)
+                        .error(R.drawable.ic_broken_image)
+                )
+                .into(binding.strDrinkThumb)
+        })
 
         // Setup OnClickListener
         binding.imageButton2.setOnClickListener(View.OnClickListener {
@@ -56,11 +58,7 @@ class DetailFragment : Fragment() {
 
         // Setup Observers
         viewModel.isFavorite.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                viewModel.favoriteBtnActive(drink)
-            } else if (!it) {
-                viewModel.favoriteBtnInactive(drink.idDrink)
-            }
+
         })
 
         return binding.root

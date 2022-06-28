@@ -44,18 +44,21 @@ data class Drink(
 //    val strMeasure15: String?
 ) : Parcelable {
 
-    fun List<Drink>.asDatabaseModelFavoriteDrink(): List<DatabaseFavoriteDrink> {
-        return map {
-            DatabaseFavoriteDrink(
-                idDrink = it.idDrink,
-                strDrink = it.strDrink,
-                strCategory = it.strCategory,
-                strGlass = it.strGlass,
-                strInstructions = it.strInstructions,
-                strDrinkThumb = it.strDrinkThumb,
-//            strIngredient1 = it.strIngredient1,
-//            strIngredient2 = it.strIngredient2,
-//            strIngredient3 = it.strIngredient3,
+}
+
+annotation class Parcelize
+
+fun Drink.asDatabaseModelFavoriteDrink(): DatabaseFavoriteDrink {
+    return DatabaseFavoriteDrink(
+        idDrink = idDrink,
+        strDrink = strDrink,
+        strCategory = strCategory,
+        strGlass = strGlass,
+        strInstructions = strInstructions,
+        strDrinkThumb = strDrinkThumb,
+//            strIngredient1 = strIngredient1,
+//            strIngredient2 = strIngredient2,
+//            strIngredient3 = strIngredient3,
 //            strIngredient4 = it.strIngredient4,
 //            strIngredient5 = it.strIngredient5,
 //            strIngredient6 = it.strIngredient6,
@@ -83,12 +86,8 @@ data class Drink(
 //            strMeasure13 = it.strMeasure13,
 //            strMeasure14 = it.strMeasure14,
 //            strMeasure15 = it.strMeasure15
-            )
-        }
-    }
+    )
 }
-
-annotation class Parcelize
 
 
 

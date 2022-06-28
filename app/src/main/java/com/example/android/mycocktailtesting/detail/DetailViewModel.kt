@@ -17,36 +17,39 @@ class DetailViewModel(drink: Drink, application: Application) : AndroidViewModel
     private val database = getDatabase(application)
     private val drinksRepository = DrinksRepository(database)
 
-    private val _selectedDrink = MutableLiveData<Drink>()
-    val selectedDrink: LiveData<Drink>
-        get() = _selectedDrink
-
-    private val _isFavorite = MutableLiveData<Boolean>()
-    val isFavorite: LiveData<Boolean>
-        get() = _isFavorite
+    val selectedDrink = MutableLiveData<Drink>()
+    val isFavorite = MutableLiveData<Boolean>()
 
     init {
         Log.e("DetailViewModel", "DetailViewModel Init")
-        _selectedDrink.value = drink
+        selectedDrink.value = drink
         initializeFavorite(drink)
     }
 
     private fun initializeFavorite(drink: Drink) {
         viewModelScope.launch {
-            _isFavorite.value = drinksRepository.checkIsFavorite(drink.idDrink)
-            println("${_isFavorite.value}")
+            isFavorite.value = drinksRepository.checkIsFavorite(drink.idDrink)
+            println("${isFavorite.value}")
         }
     }
 
     fun favoriteStatusUpdate() {
-        _isFavorite.value = _isFavorite.value != true
+        isFavorite.value = isFavorite.value != true
+
+        selectedDrink.value?.let {
+            if (isFavorite.value == true) {
+                favoriteBtnActive(it)
+            } else {
+                favoriteBtnInactive(it.idDrink)
+            }
+        }
     }
 
     fun favoriteBtnActive(drink: Drink) {
         Log.e("DetailViewModel", "favoriteBtnActive")
-//        viewModelScope.launch {
-//            drinksRepository.insertFavoriteDrink(drink)
-//        }
+        viewModelScope.launch {
+            drinksRepository.insertFavoriteDrink(drink)
+        }
     }
 
     fun favoriteBtnInactive(idDrink: Double) {

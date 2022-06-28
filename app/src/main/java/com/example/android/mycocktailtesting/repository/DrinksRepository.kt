@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.android.mycocktailtesting.database.*
 import com.example.android.mycocktailtesting.domain.Drink
+import com.example.android.mycocktailtesting.domain.asDatabaseModelFavoriteDrink
 import com.example.android.mycocktailtesting.network.Network
 import com.example.android.mycocktailtesting.network.asDatabaseModelPopularDrink
 import com.example.android.mycocktailtesting.network.asDatabaseModelRandomDrink
@@ -48,11 +49,11 @@ class DrinksRepository(val database: DrinkDatabase) {
         }
     }
 
-//        suspend fun insertFavoriteDrink(drink: Drink) {
-//        withContext(Dispatchers.IO) {
-//            database.drinkDao.insertFavoriteDrink(drink)
-//        }
-//    }
+        suspend fun insertFavoriteDrink(drink: Drink) {
+        withContext(Dispatchers.IO) {
+            database.drinkDao.insertFavoriteDrink(drink.asDatabaseModelFavoriteDrink())
+        }
+    }
 
     suspend fun deleteFavoriteDrink(idDrink: Double) {
         withContext(Dispatchers.IO) {
