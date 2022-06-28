@@ -23,18 +23,22 @@ class DrinksFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-
+        // Inflate Layout
         val binding = FragmentDrinksBinding.inflate(inflater, container, false)
 
+        // Get required values
         val activity = requireNotNull(this.activity)
 
+        // Setup ViewModel
         val viewModelFactory = DrinksViewModelFactory(activity.application)
         val viewModel = ViewModelProvider(this, viewModelFactory)[DrinksViewModel::class.java]
         this.viewModel = viewModel
 
+        // Setup RecyclerView
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
         binding.rvDrinks.layoutManager = layoutManager
 
+        // Setup adapters for each drink dataset
         val randomDrinksAdapter =
             DrinksAdapter(DrinksAdapter.OnClickListener { viewModel.navigateToSelectedDrink(it) })
         val popularDrinksAdapter =
@@ -42,6 +46,7 @@ class DrinksFragment : Fragment() {
         val favoriteDrinksAdapter =
             DrinksAdapter(DrinksAdapter.OnClickListener { viewModel.navigateToSelectedDrink(it) })
 
+        // Setup Observers
         viewModel.randomDrinkList.observe(viewLifecycleOwner, Observer {
             randomDrinksAdapter.submitList(it)
         })
@@ -51,7 +56,6 @@ class DrinksFragment : Fragment() {
         viewModel.favoriteDrink.observe(viewLifecycleOwner, Observer {
             favoriteDrinksAdapter.submitList(it)
         })
-
         viewModel.filter.observe(viewLifecycleOwner, Observer { filter ->
             when (filter) {
                 CocktailDatabaseFilter.SHOW_TODAYS -> binding.rvDrinks.adapter = randomDrinksAdapter
@@ -72,11 +76,11 @@ class DrinksFragment : Fragment() {
         return binding.root
     }
 
+    // Setup filter menu
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.drink_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         viewModel.updateFilter(
             when (item.itemId) {

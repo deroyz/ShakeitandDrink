@@ -25,50 +25,37 @@ class DetailViewModel(drink: Drink, application: Application) : AndroidViewModel
     val isFavorite: LiveData<Boolean>
         get() = _isFavorite
 
-
     init {
+        Log.e("DetailViewModel", "DetailViewModel Init")
         _selectedDrink.value = drink
+        initializeFavorite(drink)
+    }
+
+    private fun initializeFavorite(drink: Drink) {
         viewModelScope.launch {
-            _isFavorite.value = checkFavorite(drink).value
-            Log.e("DetailViewModel", "updatedFavoriteStatus: ${_isFavorite.value}")
+            _isFavorite.value = drinksRepository.checkIsFavorite(drink.idDrink)
+            println("${_isFavorite.value}")
         }
     }
 
-    private fun checkFavorite(drink: Drink): LiveData<Boolean> {
-        return database.drinkDao.checkFavoriteById(drink.idDrink)
-    }
-
-    fun favoriteBtnActive() {
-        Log.e("DetailViewModel", "favoriteBtnActive")
-    }
-
-    fun favoriteBtnInactive() {
-        Log.e("DetailViewModel", "favoriteBtnInactive")
-
-    }
-
-    fun updateFavoriteStatus() {
+    fun favoriteStatusUpdate() {
         _isFavorite.value = _isFavorite.value != true
-        Log.e("DetailViewModel", "updatedFavoriteStatus: ${_isFavorite.value}")
     }
 
-    fun viewBinding(drink: Drink, binding: FragmentDetailBinding) {
-        binding.strDrink.text = drink.strDrink
-        binding.strCategory.text = drink.strCategory
-        binding.strGlass.text = drink.strGlass
-        binding.strInstructions.text = drink.strInstructions
-
-        binding.strDrinkThumb
-        Glide.with(binding.strDrinkThumb.context)
-            .load(drink.strDrinkThumb)
-            .apply(
-                RequestOptions()
-                    .placeholder(R.drawable.loading_animation)
-                    .error(R.drawable.ic_broken_image)
-            )
-            .into(binding.strDrinkThumb)
+    fun favoriteBtnActive(drink: Drink) {
+        Log.e("DetailViewModel", "favoriteBtnActive")
+//        viewModelScope.launch {
+//            drinksRepository.insertFavoriteDrink(drink)
+//        }
     }
 
+    fun favoriteBtnInactive(idDrink: Double) {
+        Log.e("DetailViewModel", "favoriteBtnInactive")
+        viewModelScope.launch {
+            drinksRepository.deleteFavoriteDrink(idDrink)
+            Log.e("DetailViewModel", "Selected ID deleted from the favorite table")
+        }
+    }
 }
 
 class DetailViewModelFactory(private val drink: Drink, private val app: Application) :

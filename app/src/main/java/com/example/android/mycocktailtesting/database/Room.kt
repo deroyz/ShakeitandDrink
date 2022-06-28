@@ -20,6 +20,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.*
+import com.example.android.mycocktailtesting.domain.Drink
 
 enum class CocktailDatabaseFilter(val value: String) {
     SHOW_TODAYS("todays"), SHOW_POPULAR("popular"), SHOW_FAVORITE(
@@ -37,6 +38,7 @@ interface DrinkDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllRandomDrinks(vararg drinks: DatabaseRandomDrink)
 
+
     // PopularDrinks DAO
     @Query("select * from populardrinks")
     fun getPopularDrinks(): LiveData<List<DatabasePopularDrink>>
@@ -44,13 +46,19 @@ interface DrinkDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllPopularDrinks(vararg drinks: DatabasePopularDrink)
 
+
     // FavoriteDrinks DAO
     @Query("select * from favoritedrinks")
     fun getFavoriteDrinks(): LiveData<List<DatabaseFavoriteDrink>>
 
     @Query("SELECT EXISTS(select * from favoritedrinks WHERE idDrink = :id)")
-    fun checkFavoriteById(id: Double): LiveData<Boolean>
+    fun checkFavoriteById(id: Double): Boolean
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertFavoriteDrink(newFavoriteDrink: DatabaseFavoriteDrink)
+
+    @Query("DELETE FROM favoritedrinks WHERE idDrink = :id")
+    fun deleteFavoriteDrink(id: Double)
 }
 
 @Database(entities = [DatabaseRandomDrink::class, DatabasePopularDrink::class, DatabaseFavoriteDrink::class], version = 1)

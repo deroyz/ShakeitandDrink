@@ -37,13 +37,13 @@ class DrinksViewModel(application: Application) : AndroidViewModel(application) 
     val favoriteDrink = drinksRepository.favoriteDrinks
 
     init {
-        Log.e("DrinkViewModel", "ViewModel Init")
+        Log.e("DrinkViewModel", "DrinkViewModel Init")
 
         viewModelScope.launch {
             drinksRepository.refreshRandomDrinks()
             drinksRepository.refreshPopularDrinks()
-            _filter.value = CocktailDatabaseFilter.SHOW_TODAYS
         }
+        _filter.value = CocktailDatabaseFilter.SHOW_TODAYS
     }
 
     fun updateFilter(filter: CocktailDatabaseFilter) {

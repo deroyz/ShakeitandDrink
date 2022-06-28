@@ -36,7 +36,7 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/bda51d0a0b04dcb586fc6b5299424f75/transformed/databinding-adapters-7.2.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.databinding/databinding-common/7.2.1/cb53bd625b7a99cf218f46634d07d1886441288/databinding-common-7.2.1.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/a567ce921300d7d759f0378a63a350a9/transformed/databinding-ktx-7.2.1-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/693c17efb0064b98d49f98805e9ef1f5/transformed/room-ktx-2.4.2-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/68ae8734cec69a6d14f9e2f701e47f76/transformed/room-coroutines-2.1.0-alpha04-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/a46f5770f98355df86bb529448c91db7/transformed/navigation-fragment-ktx-2.4.2-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/80f6749171dc584a52b981f38ed14056/transformed/navigation-fragment-2.4.2-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ee5b69741bab752d554491bd37cf7c85/transformed/fragment-ktx-1.4.1-api.jar</arg>
@@ -263,7 +263,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.room:room-runtime:2.4.2@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.sqlite:sqlite-framework:2.2.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.sqlite:sqlite:2.2.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: androidx.room:room-ktx:2.4.2@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.room:room-coroutines:2.1.0-alpha04@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.github.bumptech.glide:glide:4.13.2@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.github.bumptech.glide:gifdecoder:4.13.2@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.exifinterface:exifinterface:1.2.0@aar" level="project" />

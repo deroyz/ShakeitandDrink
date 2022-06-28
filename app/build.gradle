@@ -54,10 +54,11 @@ dependencies {
 
     // Room database
     implementation "androidx.room:room-runtime:$version_room"
-    kapt "androidx.room:room-compiler:$version_room"
+    kapt "androidx.room:room-compiler:2.5.0-alpha02"
+      kapt "androidx.room:room-compiler:$version_room"
 
     // Kotlin Extensions and Coroutines support for Room
-    implementation "androidx.room:room-ktx:$version_room"
+    implementation 'androidx.room:room-coroutines:2.1.0-alpha04'
 
     //Fragment
     implementation 'androidx.fragment:fragment:1.4.1'

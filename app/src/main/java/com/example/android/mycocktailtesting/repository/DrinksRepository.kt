@@ -34,17 +34,6 @@ class DrinksRepository(val database: DrinkDatabase) {
         }
     }
 
-    suspend fun inputFavoriteDrink(drink: Drink) {
-        withContext(Dispatchers.IO) {
-
-        }
-    }
-
-    suspend fun deleteFavoriteDrink(idDrink: Double) {
-        withContext(Dispatchers.IO) {
-        }
-    }
-
     suspend fun refreshPopularDrinks() {
         withContext(Dispatchers.IO) {
             val popularCocktails = Network.cocktailDBService.getPopularCocktails().await()
@@ -52,11 +41,23 @@ class DrinksRepository(val database: DrinkDatabase) {
         }
     }
 
-//    suspend fun addFavoriteDrinkById() {
+    // Favorite Check, Insert, Delete
+    suspend fun checkIsFavorite(idDrink: Double): Boolean {
+        return withContext(Dispatchers.IO) {
+            database.drinkDao.checkFavoriteById(idDrink)
+        }
+    }
+
+//        suspend fun insertFavoriteDrink(drink: Drink) {
 //        withContext(Dispatchers.IO) {
-//            val popularCocktails = Network.cocktailDBService.getPopularCocktails().await()
-//            database.drinkDao.insertAllPopularDrinks(*popularCocktails.asDatabaseModelPopularDrink())
+//            database.drinkDao.insertFavoriteDrink(drink)
 //        }
 //    }
 
+    suspend fun deleteFavoriteDrink(idDrink: Double) {
+        withContext(Dispatchers.IO) {
+            database.drinkDao.deleteFavoriteDrink(idDrink)
+        }
+    }
 }
+
