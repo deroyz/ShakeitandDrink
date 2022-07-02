@@ -9,6 +9,6 @@
         android:id="@+id/myLogFragment"
         android:title="My Log" />
     <item
-        android:id="@+id/nav_inventory"
+        android:id="@+id/inventoryFragment"
         android:title="Inventory" />
 </menu>

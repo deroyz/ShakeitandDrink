@@ -2,6 +2,7 @@ package com.example.android.mycocktailtesting.drinks
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,10 @@ import com.example.android.mycocktailtesting.database.CocktailDatabaseFilter
 import com.example.android.mycocktailtesting.databinding.FragmentDrinksBinding
 
 class DrinksFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     private lateinit var viewModel: DrinksViewModel
 
@@ -72,25 +77,20 @@ class DrinksFragment : Fragment() {
             }
         })
 
-        setHasOptionsMenu(true)
+        val toolbar: Toolbar = activity.findViewById(R.id.toolbar)
+        toolbar.inflateMenu(R.menu.drink_menu)
+        toolbar.setOnMenuItemClickListener {
+            viewModel.updateFilter(
+                when (it.itemId) {
+                    R.id.todays_filter -> CocktailDatabaseFilter.SHOW_TODAYS
+                    R.id.popular_filter -> CocktailDatabaseFilter.SHOW_POPULAR
+                    else -> CocktailDatabaseFilter.SHOW_FAVORITE
+                }
+            )
+             true
+        }
         return binding.root
     }
-
-    // Setup filter menu
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.drink_menu, menu)
-//        super.onCreateOptionsMenu(menu, inflater)
-//    }
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        viewModel.updateFilter(
-//            when (item.itemId) {
-//                R.id.todays_filter -> CocktailDatabaseFilter.SHOW_TODAYS
-//                R.id.popular_filter -> CocktailDatabaseFilter.SHOW_POPULAR
-//                else -> CocktailDatabaseFilter.SHOW_FAVORITE
-//            }
-//        )
-//        return true
-//    }
 }
 
 
