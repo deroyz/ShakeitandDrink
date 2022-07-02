@@ -1,4 +1,4 @@
 package com.example.android.mycocktailtesting.log;
 
-public class MyLogViewModel {
+public class MyLogViewModel  {
 }

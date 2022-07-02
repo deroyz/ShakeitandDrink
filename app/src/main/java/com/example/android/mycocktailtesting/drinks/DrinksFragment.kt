@@ -77,20 +77,20 @@ class DrinksFragment : Fragment() {
     }
 
     // Setup filter menu
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.drink_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        viewModel.updateFilter(
-            when (item.itemId) {
-                R.id.todays_filter -> CocktailDatabaseFilter.SHOW_TODAYS
-                R.id.popular_filter -> CocktailDatabaseFilter.SHOW_POPULAR
-                else -> CocktailDatabaseFilter.SHOW_FAVORITE
-            }
-        )
-        return true
-    }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.drink_menu, menu)
+//        super.onCreateOptionsMenu(menu, inflater)
+//    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        viewModel.updateFilter(
+//            when (item.itemId) {
+//                R.id.todays_filter -> CocktailDatabaseFilter.SHOW_TODAYS
+//                R.id.popular_filter -> CocktailDatabaseFilter.SHOW_POPULAR
+//                else -> CocktailDatabaseFilter.SHOW_FAVORITE
+//            }
+//        )
+//        return true
+//    }
 }
 
 

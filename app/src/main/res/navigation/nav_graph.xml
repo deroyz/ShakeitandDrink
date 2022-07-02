@@ -22,6 +22,15 @@
         tools:layout="@layout/fragment_detail" >
         <argument android:name="selectedDrink"
             app:argType="com.example.android.mycocktailtesting.domain.Drink" />
+        <action
+            android:id="@+id/action_detailFragment_to_myLogFragment"
+            app:destination="@id/myLogFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/myLogFragment"
+        android:name="com.example.android.mycocktailtesting.log.MyLogFragment"
+        android:label="MyLogFragment"
+        tools:layout="@layout/fragment_mylog" />
 
 </navigation>
