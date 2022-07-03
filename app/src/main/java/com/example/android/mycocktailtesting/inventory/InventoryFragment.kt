@@ -1,20 +1,20 @@
-package com.example.android.mycocktailtesting.log
+package com.example.android.mycocktailtesting.inventory
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.android.mycocktailtesting.databinding.FragmentMylogBinding
+import com.example.android.mycocktailtesting.databinding.FragmentInventoryBinding
 
-class MyLogFragment: Fragment() {
+class InventoryFragment: Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentMylogBinding.inflate(inflater, container, false)
+        val binding = FragmentInventoryBinding.inflate(inflater, container, false)
 
         return binding.root
     }

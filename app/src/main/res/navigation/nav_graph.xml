@@ -24,13 +24,25 @@
             app:argType="com.example.android.mycocktailtesting.domain.Drink" />
         <action
             android:id="@+id/action_detailFragment_to_myLogFragment"
-            app:destination="@id/myLogFragment" />
+            app:destination="@id/logFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/myLogFragment"
-        android:name="com.example.android.mycocktailtesting.log.MyLogFragment"
+        android:id="@+id/logFragment"
+        android:name="com.example.android.mycocktailtesting.log.LogFragment"
         android:label="MyLogFragment"
-        tools:layout="@layout/fragment_mylog" />
+        tools:layout="@layout/fragment_log" />
+
+    <fragment
+        android:id="@+id/inventoryFragment"
+        android:name="com.example.android.mycocktailtesting.inventory.InventoryFragment"
+        android:label="InventoryFragment"
+        tools:layout="@layout/fragment_inventory" />
+    <fragment
+        android:id="@+id/ingredientsFragment"
+        android:name="com.example.android.mycocktailtesting.ingredients.IngredientsFragment"
+        android:label="IngredientsFragment"
+        tools:layout="@layout/fragment_ingredients"/>
+
 
 </navigation>

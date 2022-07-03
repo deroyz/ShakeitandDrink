@@ -4,11 +4,14 @@
 
     <item
         android:id="@+id/drinksFragment"
-        android:title="Drinks &amp; Ingredients" />
+        android:title="Drinks" />
     <item
-        android:id="@+id/myLogFragment"
-        android:title="My Log" />
+        android:id="@+id/ingredientsFragment"
+        android:title="Ingredients" />
     <item
         android:id="@+id/inventoryFragment"
         android:title="Inventory" />
+    <item
+        android:id="@+id/logFragment"
+        android:title="Log" />
 </menu>
