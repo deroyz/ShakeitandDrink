@@ -78,7 +78,9 @@ class DrinksFragment : Fragment() {
         })
 
         val toolbar: Toolbar = activity.findViewById(R.id.toolbar)
+
         toolbar.inflateMenu(R.menu.drink_menu)
+
         toolbar.setOnMenuItemClickListener {
             viewModel.updateFilter(
                 when (it.itemId) {

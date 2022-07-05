@@ -23,15 +23,32 @@ private lateinit var navController: NavController
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.findNavController()
-        setupWithNavController(binding.bottomNavigationView, navController)
+        binding?.apply {
+            setContentView(root)
+            setSupportActionBar(toolbar)
 
-//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            navController = (supportFragmentManager
+                .findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
+                .navController
+            setupWithNavController(bottomNavigationView, navController)
+        }
+
+        navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
+            val toolBar = supportActionBar ?: return@addOnDestinationChangedListener
+            when(destination.id) {
+                R.id.drinksFragment -> {
+                    toolBar.setDisplayShowTitleEnabled(false)
+                    binding.heroImage.visibility = View.VISIBLE
+                }
+                else -> {
+                    toolBar.setDisplayShowTitleEnabled(true)
+                    binding.heroImage.visibility = View.GONE
+                }
+            }
+        }
     }
 }
