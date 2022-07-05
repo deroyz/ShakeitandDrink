@@ -2,7 +2,6 @@ package com.example.android.mycocktailtesting.drinks
 
 import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.*
 import com.example.android.mycocktailtesting.database.CocktailDatabaseFilter
 import com.example.android.mycocktailtesting.database.getDatabase
@@ -24,17 +23,15 @@ class DrinksViewModel(application: Application) : AndroidViewModel(application) 
     private val database = getDatabase(application)
     private val drinksRepository = DrinksRepository(database)
 
-    private val _filter = MutableLiveData<CocktailDatabaseFilter>()
-    val filter: LiveData<CocktailDatabaseFilter>
-        get() = _filter
-
-    private val _navigateToSelectedDrink = MutableLiveData<Drink>()
-    val navigateToSelectedDrink: LiveData<Drink>
-        get() = _navigateToSelectedDrink
+    val filterList = MutableLiveData<List<String>>(    )
+    val filter = MutableLiveData<CocktailDatabaseFilter>()
+    val navigateToSelectedDrink = MutableLiveData<Drink>()
 
     val randomDrinkList = drinksRepository.randomDrinks
     val popularDrinkList = drinksRepository.popularDrinks
+    val latestDrink = drinksRepository.latestDrinks
     val favoriteDrink = drinksRepository.favoriteDrinks
+
 
     init {
         Log.e("DrinkViewModel", "DrinkViewModel Init")
@@ -42,22 +39,25 @@ class DrinksViewModel(application: Application) : AndroidViewModel(application) 
         viewModelScope.launch {
             drinksRepository.refreshRandomDrinks()
             drinksRepository.refreshPopularDrinks()
+            drinksRepository.refreshLatestDrinks()
         }
-        _filter.value = CocktailDatabaseFilter.SHOW_TODAYS
+        filter.value = CocktailDatabaseFilter.SHOW_TODAYS
+        filterList.value = drinksRepository.filterList
     }
 
     fun updateFilter(filter: CocktailDatabaseFilter) {
         Log.e("ViewModel", "updateFilter to $filter")
-        _filter.value = filter
+        this.filter.value = filter
     }
 
     fun navigateToSelectedDrinkComplete() {
-        _navigateToSelectedDrink.value = null
+        navigateToSelectedDrink.value = null
     }
 
     fun navigateToSelectedDrink(drink: Drink) {
-        _navigateToSelectedDrink.value = drink
+        navigateToSelectedDrink.value = drink
     }
+
 }
 
 class DrinksViewModelFactory(private val app: Application) : ViewModelProvider.Factory {

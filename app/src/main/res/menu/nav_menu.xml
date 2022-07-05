@@ -12,6 +12,6 @@
         android:id="@+id/inventoryFragment"
         android:title="Inventory" />
     <item
-        android:id="@+id/logFragment"
-        android:title="Log" />
+        android:id="@+id/logsFragment"
+        android:title="Logs" />
 </menu>

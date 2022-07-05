@@ -16,6 +16,9 @@ interface CocktailDBService{
 
     @GET("popular.php")
     fun getPopularCocktails(): Deferred<NetworkDrinkContainer>
+
+    @GET("latest.php")
+    fun getLatestCocktails(): Deferred<NetworkDrinkContainer>
 }
 
 /**

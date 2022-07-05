@@ -23,9 +23,11 @@ import androidx.room.*
 import com.example.android.mycocktailtesting.domain.Drink
 
 enum class CocktailDatabaseFilter(val value: String) {
-    SHOW_TODAYS("todays"), SHOW_POPULAR("popular"), SHOW_FAVORITE(
-        "favorite"
-    )
+    SHOW_TODAYS("Todays"),
+    SHOW_POPULAR("Popular"),
+    SHOW_LATEST("Latest"),
+    SHOW_FAVORITE("Favorite")
+
 }
 
 @Dao
@@ -46,6 +48,13 @@ interface DrinkDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllPopularDrinks(vararg drinks: DatabasePopularDrink)
 
+    // LatestDrinks DAO
+    @Query("select * from latestdrinks")
+    fun getLatestDrinks(): LiveData<List<DatabaseLatestDrink>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllLatestDrinks(vararg drinks: DatabaseLatestDrink)
+
 
     // FavoriteDrinks DAO
     @Query("select * from favoritedrinks")
@@ -61,7 +70,10 @@ interface DrinkDao {
     fun deleteFavoriteDrink(id: Double)
 }
 
-@Database(entities = [DatabaseRandomDrink::class, DatabasePopularDrink::class, DatabaseFavoriteDrink::class], version = 1)
+@Database(
+    entities = [DatabaseRandomDrink::class, DatabasePopularDrink::class, DatabaseFavoriteDrink::class, DatabaseLatestDrink::class],
+    version = 1
+)
 abstract class DrinkDatabase : RoomDatabase() {
     abstract val drinkDao: DrinkDao
 }

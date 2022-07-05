@@ -6,12 +6,15 @@ import com.example.android.mycocktailtesting.database.*
 import com.example.android.mycocktailtesting.domain.Drink
 import com.example.android.mycocktailtesting.domain.asDatabaseModelFavoriteDrink
 import com.example.android.mycocktailtesting.network.Network
+import com.example.android.mycocktailtesting.network.asDatabaseModelLatestDrink
 import com.example.android.mycocktailtesting.network.asDatabaseModelPopularDrink
 import com.example.android.mycocktailtesting.network.asDatabaseModelRandomDrink
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class DrinksRepository(val database: DrinkDatabase) {
+
+    val filterList: List<String> = CocktailDatabaseFilter.values().map{ it.value }
 
     val randomDrinks: LiveData<List<Drink>> =
         Transformations.map(database.drinkDao.getRandomDrinks()) {
@@ -21,6 +24,11 @@ class DrinksRepository(val database: DrinkDatabase) {
     val popularDrinks: LiveData<List<Drink>> =
         Transformations.map(database.drinkDao.getPopularDrinks()) {
             it.asDomainModelPopularDrink()
+        }
+
+    val latestDrinks: LiveData<List<Drink>> =
+        Transformations.map(database.drinkDao.getLatestDrinks()) {
+            it.asDomainModelLatestDrink()
         }
 
     val favoriteDrinks: LiveData<List<Drink>> =
@@ -39,6 +47,13 @@ class DrinksRepository(val database: DrinkDatabase) {
         withContext(Dispatchers.IO) {
             val popularCocktails = Network.cocktailDBService.getPopularCocktails().await()
             database.drinkDao.insertAllPopularDrinks(*popularCocktails.asDatabaseModelPopularDrink())
+        }
+    }
+
+    suspend fun refreshLatestDrinks() {
+        withContext(Dispatchers.IO) {
+            val latestCocktails = Network.cocktailDBService.getLatestCocktails().await()
+            database.drinkDao.insertAllLatestDrinks(*latestCocktails.asDatabaseModelLatestDrink())
         }
     }
 

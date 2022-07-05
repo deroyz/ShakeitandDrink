@@ -37,18 +37,18 @@ class MainActivity : AppCompatActivity() {
             setupWithNavController(bottomNavigationView, navController)
         }
 
-        navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
-            val toolBar = supportActionBar ?: return@addOnDestinationChangedListener
-            when(destination.id) {
-                R.id.drinksFragment -> {
-                    toolBar.setDisplayShowTitleEnabled(false)
-                    binding.heroImage.visibility = View.VISIBLE
-                }
-                else -> {
-                    toolBar.setDisplayShowTitleEnabled(true)
-                    binding.heroImage.visibility = View.GONE
-                }
-            }
-        }
+//        navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
+//            val toolBar = supportActionBar ?: return@addOnDestinationChangedListener
+//            when(destination.id) {
+//                R.id.drinksFragment -> {
+//                    toolBar.setDisplayShowTitleEnabled(false)
+//                    binding.heroImage.visibility = View.GONE
+//                }
+//                else -> {
+//                    toolBar.setDisplayShowTitleEnabled(false)
+//                    binding.heroImage.visibility = View.VISIBLE
+//                }
+//            }
+//        }
     }
 }

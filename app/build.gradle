@@ -50,8 +50,8 @@ dependencies {
 
     // Navigation
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.0'
 
     // Room database
     implementation "androidx.room:room-runtime:$version_room"
@@ -62,14 +62,14 @@ dependencies {
     implementation 'androidx.room:room-coroutines:2.1.0-alpha04'
 
     //Fragment
-    implementation 'androidx.fragment:fragment:1.4.1'
+    implementation 'androidx.fragment:fragment:1.5.0'
 
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:1.2.1"
 
     // ViewModel and LiveData
-    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
 
     // Glide
     implementation "com.github.bumptech.glide:glide:$version_glide"
