@@ -31,7 +31,11 @@
         android:id="@+id/logsFragment"
         android:name="com.example.android.mycocktailtesting.logs.LogsFragment"
         android:label="MyLogFragment"
-        tools:layout="@layout/fragment_logs"/>
+        tools:layout="@layout/fragment_logs">
+        <action
+            android:id="@+id/action_logsFragment_to_addLogFragment"
+            app:destination="@id/addLogFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/inventoryFragment"
@@ -49,7 +53,11 @@
         android:id="@+id/addLogFragment"
         android:name="com.example.android.mycocktailtesting.addlog.AddLogFragment"
         android:label="AddLogFragment"
-        tools:layout="@layout/fragment_add_log"/>
+        tools:layout="@layout/fragment_add_log">
+        <argument android:name="selectedLogId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 
 
 </navigation>

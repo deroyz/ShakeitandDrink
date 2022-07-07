@@ -21,20 +21,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.example.android.mycocktailtesting.domain.Drink
+import com.example.android.mycocktailtesting.domain.Log
 
 enum class CocktailDatabaseFilter(val value: String) {
     SHOW_TODAYS("Todays"),
     SHOW_POPULAR("Popular"),
     SHOW_LATEST("Latest"),
     SHOW_FAVORITE("Favorite")
-
 }
 
 @Dao
 interface DrinkDao {
 
     // RandomDrinks DAO
-    @Query("select * from randomdrinks")
+    @Query("SELECT * FROM randomdrinks")
     fun getRandomDrinks(): LiveData<List<DatabaseRandomDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -42,14 +42,14 @@ interface DrinkDao {
 
 
     // PopularDrinks DAO
-    @Query("select * from populardrinks")
+    @Query("SELECT * FROM populardrinks")
     fun getPopularDrinks(): LiveData<List<DatabasePopularDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllPopularDrinks(vararg drinks: DatabasePopularDrink)
 
     // LatestDrinks DAO
-    @Query("select * from latestdrinks")
+    @Query("SELECT * FROM latestdrinks")
     fun getLatestDrinks(): LiveData<List<DatabaseLatestDrink>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -57,10 +57,10 @@ interface DrinkDao {
 
 
     // FavoriteDrinks DAO
-    @Query("select * from favoritedrinks")
+    @Query("SELECT * FROM favoritedrinks")
     fun getFavoriteDrinks(): LiveData<List<DatabaseFavoriteDrink>>
 
-    @Query("SELECT EXISTS(select * from favoritedrinks WHERE idDrink = :id)")
+    @Query("SELECT EXISTS(SELECT * FROM favoritedrinks WHERE idDrink = :id)")
     fun checkFavoriteById(id: Double): Boolean
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -70,12 +70,28 @@ interface DrinkDao {
     fun deleteFavoriteDrink(id: Double)
 }
 
+@Dao
+interface LogDao {
+    @Query("SELECT * from logList")
+    fun getLogs(): LiveData<List<DatabaseLog>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertLog(newLog: DatabaseLog)
+
+    @Query("DELETE FROM logList WHERE idLog = :id")
+    fun deleteLog(id: Int)
+
+    @Query("SELECT * from logList WHERE idLog = :id")
+    fun loadByLogId(id: Int): Log
+}
+
 @Database(
-    entities = [DatabaseRandomDrink::class, DatabasePopularDrink::class, DatabaseFavoriteDrink::class, DatabaseLatestDrink::class],
+    entities = [DatabaseRandomDrink::class, DatabasePopularDrink::class, DatabaseFavoriteDrink::class, DatabaseLatestDrink::class, DatabaseLog::class],
     version = 1
 )
 abstract class DrinkDatabase : RoomDatabase() {
     abstract val drinkDao: DrinkDao
+    abstract val logDao: LogDao
 }
 
 private lateinit var INSTANCE: DrinkDatabase
@@ -92,3 +108,5 @@ fun getDatabase(context: Context): DrinkDatabase {
     }
     return INSTANCE
 }
+
+

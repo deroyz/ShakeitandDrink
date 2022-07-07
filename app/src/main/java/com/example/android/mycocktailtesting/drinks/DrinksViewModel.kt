@@ -3,6 +3,7 @@ package com.example.android.mycocktailtesting.drinks
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.android.mycocktailtesting.addlog.AddLogViewModel
 import com.example.android.mycocktailtesting.database.CocktailDatabaseFilter
 import com.example.android.mycocktailtesting.database.getDatabase
 import com.example.android.mycocktailtesting.domain.Drink

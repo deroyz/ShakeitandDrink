@@ -45,14 +45,14 @@ class DetailViewModel(drink: Drink, application: Application) : AndroidViewModel
         }
     }
 
-    fun favoriteBtnActive(drink: Drink) {
+    private fun favoriteBtnActive(drink: Drink) {
         Log.e("DetailViewModel", "favoriteBtnActive")
         viewModelScope.launch {
             drinksRepository.insertFavoriteDrink(drink)
         }
     }
 
-    fun favoriteBtnInactive(idDrink: Double) {
+    private fun favoriteBtnInactive(idDrink: Double) {
         Log.e("DetailViewModel", "favoriteBtnInactive")
         viewModelScope.launch {
             drinksRepository.deleteFavoriteDrink(idDrink)

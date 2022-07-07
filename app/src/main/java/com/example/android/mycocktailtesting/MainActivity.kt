@@ -48,15 +48,24 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
             val toolBar = supportActionBar ?: return@addOnDestinationChangedListener
             when(destination.id) {
-                R.id.addLogFragment, R.id.detailFragment -> {
+                R.id.addLogFragment -> {
                     toolBar.setDisplayShowTitleEnabled(false)
                     toolBar.setDisplayHomeAsUpEnabled(true)
+                    floatingActionButton.visibility = View.GONE
+                    binding.heroImage.visibility = View.VISIBLE
+                    binding.bottomNavigationView.visibility = View.GONE
+                }
+                R.id.detailFragment -> {
+                    toolBar.setDisplayShowTitleEnabled(false)
+                    toolBar.setDisplayHomeAsUpEnabled(true)
+                    floatingActionButton.visibility = View.VISIBLE
                     binding.heroImage.visibility = View.VISIBLE
                     binding.bottomNavigationView.visibility = View.GONE
                 }
                 else -> {
                     toolBar.setDisplayShowTitleEnabled(true)
                     toolBar.setDisplayHomeAsUpEnabled(false)
+                    floatingActionButton.visibility = View.VISIBLE
                     binding.heroImage.visibility = View.VISIBLE
                     binding.bottomNavigationView.visibility = View.VISIBLE
                 }
