@@ -82,7 +82,7 @@ class DrinksFragment : Fragment() {
                 val chip = inflater.inflate(R.layout.drink_filter, chipGroup, false) as Chip
 
                 chip.text = filterName
-                if(chip.text == viewModel.filter.value!!.value){
+                if (chip.text == viewModel.filter.value!!.value) {
                     chip.isChecked = true
                 }
                 chip.setOnCheckedChangeListener { button, isChecked ->
@@ -109,12 +109,13 @@ class DrinksFragment : Fragment() {
 
         // Replace the adapter for chosen filter
         viewModel.filter.observe(viewLifecycleOwner, Observer { filter ->
-            when (filter) {
-                CocktailDatabaseFilter.SHOW_TODAYS -> binding.rvDrinks.adapter = randomDrinksAdapter
-                CocktailDatabaseFilter.SHOW_POPULAR -> binding.rvDrinks.adapter = popularDrinksAdapter
-                CocktailDatabaseFilter.SHOW_LATEST -> binding.rvDrinks.adapter = latestDrinksAdapter
-                CocktailDatabaseFilter.SHOW_FAVORITE -> binding.rvDrinks.adapter = favoriteDrinksAdapter
+            var adapter = when (filter) {
+                CocktailDatabaseFilter.SHOW_TODAYS -> randomDrinksAdapter
+                CocktailDatabaseFilter.SHOW_POPULAR -> popularDrinksAdapter
+                CocktailDatabaseFilter.SHOW_LATEST -> latestDrinksAdapter
+                CocktailDatabaseFilter.SHOW_FAVORITE -> favoriteDrinksAdapter
             }
+            binding.rvDrinks.adapter = adapter
         })
 
         viewModel.navigateToSelectedDrink.observe(viewLifecycleOwner, Observer {

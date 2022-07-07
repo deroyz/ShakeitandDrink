@@ -16,9 +16,12 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android.mycocktailtesting.databinding.ActivityMainBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 private lateinit var binding: ActivityMainBinding
 private lateinit var navController: NavController
+private lateinit var floatingActionButton: FloatingActionButton
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,20 +38,35 @@ class MainActivity : AppCompatActivity() {
                 .findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
                 .navController
             setupWithNavController(bottomNavigationView, navController)
-        }
 
-//        navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
-//            val toolBar = supportActionBar ?: return@addOnDestinationChangedListener
-//            when(destination.id) {
-//                R.id.drinksFragment -> {
-//                    toolBar.setDisplayShowTitleEnabled(false)
-//                    binding.heroImage.visibility = View.GONE
-//                }
-//                else -> {
-//                    toolBar.setDisplayShowTitleEnabled(false)
-//                    binding.heroImage.visibility = View.VISIBLE
-//                }
-//            }
-//        }
+            floatingActionButton = fabAddLog
+            floatingActionButton.setOnClickListener(View.OnClickListener {
+                navController.navigate(R.id.addLogFragment)
+            })
+
+        }
+        navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
+            val toolBar = supportActionBar ?: return@addOnDestinationChangedListener
+            when(destination.id) {
+                R.id.addLogFragment, R.id.detailFragment -> {
+                    toolBar.setDisplayShowTitleEnabled(false)
+                    toolBar.setDisplayHomeAsUpEnabled(true)
+                    binding.heroImage.visibility = View.VISIBLE
+                    binding.bottomNavigationView.visibility = View.GONE
+                }
+                else -> {
+                    toolBar.setDisplayShowTitleEnabled(true)
+                    toolBar.setDisplayHomeAsUpEnabled(false)
+                    binding.heroImage.visibility = View.VISIBLE
+                    binding.bottomNavigationView.visibility = View.VISIBLE
+                }
+            }
+        }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }

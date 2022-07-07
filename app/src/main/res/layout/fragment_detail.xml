@@ -22,47 +22,69 @@
 
     <ImageView
         android:id="@+id/strDrinkThumb"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/strDrink"
         app:srcCompat="@drawable/loading_img" />
 
-    <TextView
-        android:id="@+id/strCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        tools:text="Category:"
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="@+id/strDrinkThumb"
-        app:layout_constraintTop_toBottomOf="@+id/strDrinkThumb" />
+        app:layout_constraintEnd_toEndOf="@+id/strDrinkThumb"
+        app:layout_constraintTop_toBottomOf="@+id/strDrinkThumb"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <TextView
-        android:id="@+id/strGlass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        tools:text="Glass: "
-        app:layout_constraintStart_toStartOf="@+id/strCategory"
-        app:layout_constraintTop_toBottomOf="@+id/strCategory" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/strInstructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        tools:text="Instructions: "
-        app:layout_constraintStart_toStartOf="@+id/strGlass"
-        app:layout_constraintTop_toBottomOf="@+id/strGlass" />
+            <TextView
+                android:id="@+id/strCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textSize="12sp"
+
+
+                tools:text="Category:" />
+
+            <TextView
+                android:id="@+id/strGlass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textSize="12sp"
+                tools:text="Glass: " />
+
+            <TextView
+                android:id="@+id/strInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/strDrinkThumb"
+                tools:text="Instructions: " />
+
+        </LinearLayout>
+    </ScrollView>
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/strDrinkThumb"
-        app:layout_constraintStart_toEndOf="@+id/strDrinkThumb"
+        app:layout_constraintEnd_toEndOf="@+id/strDrinkThumb"
         app:srcCompat="@android:drawable/btn_star" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

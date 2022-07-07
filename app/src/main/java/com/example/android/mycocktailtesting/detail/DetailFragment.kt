@@ -36,9 +36,9 @@ class DetailFragment : Fragment() {
         // Setup ViewBinding
         viewModel.selectedDrink.observe(viewLifecycleOwner, Observer {
             binding.strDrink.text = it.strDrink
-            binding.strCategory.text = it.strCategory
-            binding.strGlass.text = it.strGlass
-            binding.strInstructions.text = it.strInstructions
+            binding.strCategory.text = "Category: " + it.strCategory
+            binding.strGlass.text = "Glass: " + it.strGlass
+            binding.strInstructions.text = "Instructions: " + it.strInstructions
 
             binding.strDrinkThumb
             Glide.with(binding.strDrinkThumb.context)
