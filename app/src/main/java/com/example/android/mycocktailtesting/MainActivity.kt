@@ -29,14 +29,13 @@ class MainActivity : AppCompatActivity() {
 
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        navController = (supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
+            .navController
 
         binding?.apply {
             setContentView(root)
             setSupportActionBar(toolbar)
-
-            navController = (supportFragmentManager
-                .findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
-                .navController
             setupWithNavController(bottomNavigationView, navController)
 
             floatingActionButton = fabAddLog
@@ -47,13 +46,20 @@ class MainActivity : AppCompatActivity() {
         }
         navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
             val toolBar = supportActionBar ?: return@addOnDestinationChangedListener
-            when(destination.id) {
+            when (destination.id) {
                 R.id.addLogFragment -> {
-                    toolBar.setDisplayShowTitleEnabled(false)
-                    toolBar.setDisplayHomeAsUpEnabled(true)
+
+                    toolBar.apply {
+                        setDisplayShowTitleEnabled(false)
+                        setDisplayHomeAsUpEnabled(true)
+                    }
+
+                    binding.apply {
+                        heroImage.visibility = View.VISIBLE
+                        bottomNavigationView.visibility = View.GONE
+                    }
                     floatingActionButton.visibility = View.GONE
-                    binding.heroImage.visibility = View.VISIBLE
-                    binding.bottomNavigationView.visibility = View.GONE
+
                 }
                 R.id.detailFragment -> {
                     toolBar.setDisplayShowTitleEnabled(false)

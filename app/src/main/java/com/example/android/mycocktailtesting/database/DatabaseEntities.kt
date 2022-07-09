@@ -19,8 +19,7 @@ package com.example.android.mycocktailtesting.database
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.android.mycocktailtesting.domain.Drink
-import com.example.android.mycocktailtesting.domain.Log
-import java.util.*
+import com.example.android.mycocktailtesting.domain.DomainLog
 
 @Entity(tableName = "randomdrinks")
 data class DatabaseRandomDrink constructor(
@@ -189,14 +188,16 @@ data class DatabaseFavoriteDrink constructor(
 @Entity(tableName = "logList")
 data class DatabaseLog(
     @PrimaryKey(autoGenerate = true)
-    val idLog: Int,
-    val nameLog: String,
-    val priceLog: Double,
-    val ratingLog: String,
-    val placeLog: String,
+    var idLog: Int = 0,
+    var nameLog: String,
+    var priceLog: Double,
+    var ratingLog: String,
+    var placeLog: String,
 //    val dateLog: Date,
-    val commentLog: String
-)
+    var commentLog: String,
+) {
+
+}
 
 
 fun List<DatabaseRandomDrink>.asDomainModelRandomDrink(): List<Drink> {
@@ -375,12 +376,12 @@ fun List<DatabaseFavoriteDrink>.asDomainModelFavoriteDrink(): List<Drink> {
     }
 }
 
-fun List<DatabaseLog>.asDomainModelLog(): List<Log> {
+fun List<DatabaseLog>.asDomainModelLog(): List<DomainLog> {
     return map {
-        Log(
+        DomainLog(
             idLog = it.idLog,
             nameLog = it.nameLog,
-            priceLog = it. priceLog,
+            priceLog = it.priceLog,
             ratingLog = it.ratingLog,
             placeLog = it.placeLog,
 //            dateLog = it.dateLog,

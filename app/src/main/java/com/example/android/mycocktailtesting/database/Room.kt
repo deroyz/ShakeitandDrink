@@ -18,10 +18,8 @@ package com.example.android.mycocktailtesting.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.*
-import com.example.android.mycocktailtesting.domain.Drink
-import com.example.android.mycocktailtesting.domain.Log
+import com.example.android.mycocktailtesting.domain.DomainLog
 
 enum class CocktailDatabaseFilter(val value: String) {
     SHOW_TODAYS("Todays"),
@@ -82,7 +80,7 @@ interface LogDao {
     fun deleteLog(id: Int)
 
     @Query("SELECT * from logList WHERE idLog = :id")
-    fun loadByLogId(id: Int): Log
+    fun loadByLogId(id: Int): DomainLog
 }
 
 @Database(

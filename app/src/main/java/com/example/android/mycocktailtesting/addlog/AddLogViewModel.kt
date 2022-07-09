@@ -1,37 +1,46 @@
 package com.example.android.mycocktailtesting.addlog
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.android.mycocktailtesting.database.getDatabase
-import com.example.android.mycocktailtesting.domain.Log
+import com.example.android.mycocktailtesting.domain.DomainLog
 import com.example.android.mycocktailtesting.repository.LogRepository
 import kotlinx.coroutines.launch
 
-class AddLogViewModel(application: Application, logId: Int) : AndroidViewModel(application) {
+class AddLogViewModel(application: Application, private val logId: Int) :
+    AndroidViewModel(application) {
 
     companion object {
-        const val DEFAULT_LOG_ID = -1
+        const val ADD_LOG_ID = 0
     }
 
     private val database = getDatabase(application)
     private val logRepository = LogRepository(database)
 
-    val log = MutableLiveData<Log>()
+    val domainLog = MutableLiveData<DomainLog>()
 
     init {
-        if (logId != DEFAULT_LOG_ID) {
+        Log.e("AddLogViewModel", "1")
+        if (logId != ADD_LOG_ID) {
+            Log.e("AddLogViewModel", "2")
             viewModelScope.launch {
-                log.value = logRepository.loadByLogId(logId)
+                domainLog.value = logRepository.loadByLogId(logId)
             }
         }
     }
 
+    fun onAddButtonClicked(logEntry: DomainLog) {
+        Log.e("AddLogViewModel", "3")
 
+        Log.e("AddLogViewModel", "${logEntry.nameLog}")
 
-    fun onAddButtonClicked(log: Log) {
-//        viewModelScope.launch {
-//            logRepository.insertLog(log)
-//        }
+        if (logId == ADD_LOG_ID) {
+            viewModelScope.launch {
+                Log.e("AddLogViewModel", "4")
+                domainLog.value?.let { logRepository.insertLog(it) }
+            }
+        }
     }
 
     fun takePhoto() {
