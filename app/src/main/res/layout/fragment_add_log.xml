@@ -5,83 +5,97 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/iv_cocktail_photo"
-        android:layout_width="227dp"
-        android:layout_height="294dp"
-        android:layout_marginTop="16dp"
-        android:adjustViewBounds="true"
-        android:minHeight="250dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
-
-    <EditText
-        android:id="@+id/et_cocktail_name"
-        android:layout_width="366dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Cocktail Name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/iv_cocktail_photo"
-        app:layout_constraintTop_toBottomOf="@+id/iv_cocktail_photo" />
-
-    <EditText
-        android:id="@+id/et_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Price ($ 000.00)"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/et_cocktail_name"
-        app:layout_constraintTop_toBottomOf="@+id/et_cocktail_name" />
-
-    <EditText
-        android:id="@+id/et_place"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:clickable="true"
-        android:focusable="false"
-        android:hint="Add Places"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/et_price"
-        app:layout_constraintTop_toBottomOf="@+id/et_price" />
-
-    <RatingBar
-        android:id="@+id/rb_cocktail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="@+id/et_place"
-        app:layout_constraintTop_toBottomOf="@+id/et_place" />
-
-    <EditText
-        android:id="@+id/et_comment"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Comment"
-        app:layout_constraintStart_toStartOf="@+id/rb_cocktail"
-        app:layout_constraintTop_toBottomOf="@+id/rb_cocktail" />
-
-    <Button
-        android:id="@+id/btn_add"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:text="Add to log"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_cocktail_photo"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
+                android:minHeight="250dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.086"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_camera" />
+
+            <EditText
+                android:id="@+id/et_cocktail_name"
+                android:layout_width="366dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Cocktail Name"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/iv_cocktail_photo"
+                app:layout_constraintTop_toBottomOf="@+id/iv_cocktail_photo" />
+
+            <EditText
+                android:id="@+id/et_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Price ($ 000.00)"
+                android:inputType="numberDecimal"
+                app:layout_constraintStart_toStartOf="@+id/et_cocktail_name"
+                app:layout_constraintTop_toBottomOf="@+id/et_cocktail_name" />
+
+            <EditText
+                android:id="@+id/et_place"
+                android:layout_width="300dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:focusable="false"
+                android:hint="Add Places"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="@+id/et_price"
+                app:layout_constraintTop_toBottomOf="@+id/et_price" />
+
+            <RatingBar
+                android:id="@+id/rb_cocktail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="@+id/et_place"
+                app:layout_constraintTop_toBottomOf="@+id/et_place" />
+
+            <EditText
+                android:id="@+id/et_comment"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Comment"
+                app:layout_constraintStart_toStartOf="@+id/rb_cocktail"
+                app:layout_constraintTop_toBottomOf="@+id/rb_cocktail" />
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:text="Add to log"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

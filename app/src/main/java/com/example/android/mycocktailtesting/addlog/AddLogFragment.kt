@@ -1,6 +1,7 @@
 package com.example.android.mycocktailtesting.addlog
 
 import android.os.Bundle
+import android.text.TextUtils.isEmpty
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -39,13 +40,18 @@ class AddLogFragment : Fragment() {
         binding.btnAdd.setOnClickListener(View.OnClickListener {
 
             val nameLog = binding.etCocktailName.text.toString()
-            val priceLog = binding.etPrice.text.toString().toDouble()
-            val ratingLog = binding.rbCocktail.rating.toDouble().toString()
+            var priceLog = binding.etPrice.toString().toDoubleOrNull()
+            if(priceLog == null){
+                priceLog = 0.0
+            }
+            val ratingLog = binding.rbCocktail.rating.toDouble()
             val placeLog = "hi"
             val commentLog = binding.etComment.text.toString()
+
             Log.e("AddLogFragment", "5")
 
-            val logEntry = DomainLog(logId, nameLog, priceLog, ratingLog, placeLog, commentLog)
+            val logEntry =
+                DomainLog(logId, nameLog, priceLog, ratingLog, placeLog, commentLog)
 
             viewModel.onAddButtonClicked(logEntry)
 

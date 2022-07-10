@@ -8,11 +8,11 @@ import com.example.android.mycocktailtesting.database.DatabaseLog
 data class DomainLog(
     var idLog: Int = 0,
     var nameLog: String = "",
-    var priceLog: Double,
-    var ratingLog: String,
-    var placeLog: String,
+    var priceLog: Double = 0.0,
+    var ratingLog: Double = 0.0,
+    var placeLog: String= " ",
 //    val dateLog: Date,
-    var commentLog: String
+    var commentLog: String = " "
 ) : Parcelable {
 
 }

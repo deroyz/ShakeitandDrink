@@ -191,7 +191,7 @@ data class DatabaseLog(
     var idLog: Int = 0,
     var nameLog: String,
     var priceLog: Double,
-    var ratingLog: String,
+    var ratingLog: Double,
     var placeLog: String,
 //    val dateLog: Date,
     var commentLog: String,

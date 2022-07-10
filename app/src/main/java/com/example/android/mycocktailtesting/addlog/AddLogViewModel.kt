@@ -31,14 +31,13 @@ class AddLogViewModel(application: Application, private val logId: Int) :
     }
 
     fun onAddButtonClicked(logEntry: DomainLog) {
-        Log.e("AddLogViewModel", "3")
 
         Log.e("AddLogViewModel", "${logEntry.nameLog}")
 
         if (logId == ADD_LOG_ID) {
             viewModelScope.launch {
                 Log.e("AddLogViewModel", "4")
-                domainLog.value?.let { logRepository.insertLog(it) }
+                logRepository.insertLog(logEntry)
             }
         }
     }
