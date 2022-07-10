@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 
 class DrinksRepository(val database: DrinkDatabase) {
 
-    val filterList: List<String> = CocktailDatabaseFilter.values().map{ it.value }
+    val filterList: List<String> = CocktailDatabaseFilter.values().map { it.value }
 
     val randomDrinks: LiveData<List<Drink>> =
         Transformations.map(database.drinkDao.getRandomDrinks()) {
@@ -64,7 +64,7 @@ class DrinksRepository(val database: DrinkDatabase) {
         }
     }
 
-        suspend fun insertFavoriteDrink(drink: Drink) {
+    suspend fun insertFavoriteDrink(drink: Drink) {
         withContext(Dispatchers.IO) {
             database.drinkDao.insertFavoriteDrink(drink.asDatabaseModelFavoriteDrink())
         }

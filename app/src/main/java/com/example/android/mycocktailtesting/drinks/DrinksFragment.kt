@@ -31,6 +31,7 @@ class DrinksFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
+
         // Inflate Layout
         val binding = FragmentDrinksBinding.inflate(inflater, container, false)
 
@@ -120,12 +121,10 @@ class DrinksFragment : Fragment() {
 
         viewModel.navigateToSelectedDrink.observe(viewLifecycleOwner, Observer {
             if (null != it) {
-                this.findNavController().navigate(DrinksFragmentDirections.actionShowDetail(it))
+                this.findNavController().navigate(DrinksFragmentDirections.actionShowDrinkDetail(it))
                 viewModel.navigateToSelectedDrinkComplete()
             }
         })
-
-        val toolbar: Toolbar = activity.findViewById(R.id.toolbar)
 
         return binding.root
     }

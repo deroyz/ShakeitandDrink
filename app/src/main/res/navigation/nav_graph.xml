@@ -11,7 +11,7 @@
         android:label="DrinksFragment"
         tools:layout="@layout/fragment_drinks" >
         <action
-            android:id="@+id/action_showDetail"
+            android:id="@+id/action_showDrinkDetail"
             app:destination="@id/detailFragment" />
     </fragment>
 
@@ -33,7 +33,7 @@
         android:label="MyLogFragment"
         tools:layout="@layout/fragment_logs">
         <action
-            android:id="@+id/action_logsFragment_to_addLogFragment"
+            android:id="@+id/action_showLogDetail"
             app:destination="@id/addLogFragment" />
     </fragment>
 

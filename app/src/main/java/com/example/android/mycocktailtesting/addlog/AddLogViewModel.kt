@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.android.mycocktailtesting.database.getDatabase
 import com.example.android.mycocktailtesting.domain.DomainLog
-import com.example.android.mycocktailtesting.repository.LogRepository
+import com.example.android.mycocktailtesting.repository.LogsRepository
 import kotlinx.coroutines.launch
 
 class AddLogViewModel(application: Application, private val logId: Int) :
@@ -16,7 +16,7 @@ class AddLogViewModel(application: Application, private val logId: Int) :
     }
 
     private val database = getDatabase(application)
-    private val logRepository = LogRepository(database)
+    private val logsRepository = LogsRepository(database)
 
     val domainLog = MutableLiveData<DomainLog>()
 
@@ -25,7 +25,7 @@ class AddLogViewModel(application: Application, private val logId: Int) :
         if (logId != ADD_LOG_ID) {
             Log.e("AddLogViewModel", "2")
             viewModelScope.launch {
-                domainLog.value = logRepository.loadByLogId(logId)
+                domainLog.value = logsRepository.loadByLogId(logId)
             }
         }
     }
@@ -37,7 +37,7 @@ class AddLogViewModel(application: Application, private val logId: Int) :
         if (logId == ADD_LOG_ID) {
             viewModelScope.launch {
                 Log.e("AddLogViewModel", "4")
-                logRepository.insertLog(logEntry)
+                logsRepository.insertLog(logEntry)
             }
         }
     }

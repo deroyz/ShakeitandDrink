@@ -6,13 +6,13 @@ import com.example.android.mycocktailtesting.database.DatabaseLog
 
 @Parcelize
 data class DomainLog(
-    var idLog: Int = 0,
-    var nameLog: String = "",
-    var priceLog: Double = 0.0,
-    var ratingLog: Double = 0.0,
-    var placeLog: String= " ",
+    val idLog: Int = 0,
+    val nameLog: String = "",
+    val priceLog: Double = 0.0,
+    val ratingLog: Double = 0.0,
+    val placeLog: String= " ",
 //    val dateLog: Date,
-    var commentLog: String = " "
+    val commentLog: String = " "
 ) : Parcelable {
 
 }

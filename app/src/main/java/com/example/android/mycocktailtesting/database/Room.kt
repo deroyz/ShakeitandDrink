@@ -70,7 +70,7 @@ interface DrinkDao {
 
 @Dao
 interface LogDao {
-    @Query("SELECT * from logList")
+    @Query("SELECT * FROM logList")
     fun getLogs(): LiveData<List<DatabaseLog>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

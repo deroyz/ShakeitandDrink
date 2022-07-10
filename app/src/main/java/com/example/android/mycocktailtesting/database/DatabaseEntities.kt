@@ -188,13 +188,13 @@ data class DatabaseFavoriteDrink constructor(
 @Entity(tableName = "logList")
 data class DatabaseLog(
     @PrimaryKey(autoGenerate = true)
-    var idLog: Int = 0,
-    var nameLog: String,
-    var priceLog: Double,
-    var ratingLog: Double,
-    var placeLog: String,
+    val idLog: Int = 0,
+    val nameLog: String,
+    val priceLog: Double,
+    val ratingLog: Double,
+    val placeLog: String,
 //    val dateLog: Date,
-    var commentLog: String,
+    val commentLog: String,
 ) {
 
 }

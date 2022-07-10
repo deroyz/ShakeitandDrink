@@ -9,7 +9,7 @@ import com.example.android.mycocktailtesting.domain.asDatabaseModelLog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class LogRepository(val database: DrinkDatabase) {
+class LogsRepository(val database: DrinkDatabase) {
 
     val domainLogList: LiveData<List<DomainLog>> =
         Transformations.map(database.logDao.getLogs()) {
@@ -28,7 +28,9 @@ class LogRepository(val database: DrinkDatabase) {
         }
     }
 
-    fun loadByLogId(logId: Int): DomainLog {
-        return database.logDao.loadByLogId(logId)
+    suspend fun loadByLogId(logId: Int): DomainLog {
+        return withContext(Dispatchers.IO) {
+            database.logDao.loadByLogId(logId)
+        }
     }
 }
