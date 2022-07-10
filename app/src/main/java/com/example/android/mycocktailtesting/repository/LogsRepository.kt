@@ -33,4 +33,5 @@ class LogsRepository(val database: DrinkDatabase) {
             database.logDao.loadByLogId(logId)
         }
     }
+
 }

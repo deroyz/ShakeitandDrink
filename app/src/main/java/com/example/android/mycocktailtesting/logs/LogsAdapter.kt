@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-
 import com.example.android.mycocktailtesting.databinding.ListLogBinding
 import com.example.android.mycocktailtesting.domain.DomainLog
 
@@ -49,7 +48,6 @@ class LogsAdapter(private val onClickListener: OnClickListener) :
 
     override fun onBindViewHolder(holder: LogsViewHolder, position: Int) {
         val item = getItem(position)
-        Log.e("LogsAdapter", "${item.idLog}")
         holder.itemView.setOnClickListener { onClickListener.onClick(item) }
         holder.bind(item)
     }

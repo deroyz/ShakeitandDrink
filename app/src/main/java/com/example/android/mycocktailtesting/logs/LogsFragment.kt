@@ -34,23 +34,19 @@ class LogsFragment : Fragment() {
         val viewModelFactory = LogsViewModelFactory(activity.application)
         val viewModel = ViewModelProvider(this, viewModelFactory)[LogsViewModel::class.java]
         this.viewModel = viewModel
-        Log.e("LogsFragment", "1")
 
         // Setup RecyclerView
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
         binding.rvLogs.layoutManager = layoutManager
-        Log.e("LogsFragment", "2")
 
         // Setup adapter for log dataset
-        val logsAdapter = LogsAdapter(LogsAdapter.OnClickListener{viewModel.navigateToSelectedLog(it)})
-        Log.e("LogsFragment", "3")
+        val logsAdapter =
+            LogsAdapter(LogsAdapter.OnClickListener { viewModel.navigateToSelectedLog(it) })
+        binding.rvLogs.adapter = logsAdapter
 
         // Setup Observer
         viewModel.logList.observe(viewLifecycleOwner, Observer {
-            Log.e("LogsFragment", "logList Observer Triggered")
-            Log.e("LogsFragment", "logList ${it.size}")
             logsAdapter.submitList(it)
-
         })
 
 //        viewModel.navigateToSelectedLog.observe(viewLifecycleOwner, Observer {

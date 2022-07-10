@@ -58,9 +58,11 @@ class MainActivity : AppCompatActivity() {
                         heroImage.visibility = View.VISIBLE
                         bottomNavigationView.visibility = View.GONE
                     }
+
                     floatingActionButton.visibility = View.GONE
 
                 }
+
                 R.id.detailFragment -> {
                     toolBar.setDisplayShowTitleEnabled(false)
                     toolBar.setDisplayHomeAsUpEnabled(true)
@@ -68,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                     binding.heroImage.visibility = View.VISIBLE
                     binding.bottomNavigationView.visibility = View.GONE
                 }
+
                 else -> {
                     toolBar.setDisplayShowTitleEnabled(true)
                     toolBar.setDisplayHomeAsUpEnabled(false)
@@ -75,6 +78,7 @@ class MainActivity : AppCompatActivity() {
                     binding.heroImage.visibility = View.VISIBLE
                     binding.bottomNavigationView.visibility = View.VISIBLE
                 }
+
             }
         }
     }
