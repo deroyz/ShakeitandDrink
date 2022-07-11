@@ -25,9 +25,7 @@ class AddLogFragment : Fragment() {
     ): View? {
         // Inflate Layout
         val binding = FragmentAddLogBinding.inflate(inflater, container, false)
-        Log.e("AddLogFragment", "1")
         val activity = requireNotNull(this.activity)
-        Log.e("AddLogFragment", "2")
 
         val logId = AddLogFragmentArgs.fromBundle(arguments!!).selectedLogId
         Log.e("AddLogFragment", "logId = $logId")
@@ -35,24 +33,22 @@ class AddLogFragment : Fragment() {
         val viewModelFactory = AddLogViewModelFactory(activity.application, logId)
         val viewModel = ViewModelProvider(this, viewModelFactory)[AddLogViewModel::class.java]
         this.viewModel = viewModel
-        Log.e("AddLogFragment", "4")
+
+        binding.ivCocktailPhoto.setOnClickListener(View.OnClickListener {
+            viewModel.onImgBttnClicked()
+        })
 
         binding.btnAdd.setOnClickListener(View.OnClickListener {
-
             val nameLog = binding.etCocktailName.text.toString()
             var priceLog = binding.etPrice.toString().toDoubleOrNull()
-            if(priceLog == null){
+            if (priceLog == null) {
                 priceLog = 0.0
             }
             val ratingLog = binding.rbCocktail.rating.toDouble()
             val placeLog = "hi"
             val commentLog = binding.etComment.text.toString()
-
-            Log.e("AddLogFragment", "5")
-
             val logEntry =
                 DomainLog(logId, nameLog, priceLog, ratingLog, placeLog, commentLog)
-
             viewModel.onAddButtonClicked(logEntry)
 
         })
@@ -60,7 +56,6 @@ class AddLogFragment : Fragment() {
         viewModel.domainLog.observe(viewLifecycleOwner, Observer
         {
             binding.apply {
-                Log.e("AddLogFragment", "7")
                 etCocktailName.setText(it.nameLog)
                 etPrice.setText(it.priceLog.toString())
             }

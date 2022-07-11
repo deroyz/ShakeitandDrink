@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
             .navController
 
-        binding?.apply {
+        binding.apply {
             setContentView(root)
             setSupportActionBar(toolbar)
             setupWithNavController(bottomNavigationView, navController)
@@ -48,37 +48,40 @@ class MainActivity : AppCompatActivity() {
             val toolBar = supportActionBar ?: return@addOnDestinationChangedListener
             when (destination.id) {
                 R.id.addLogFragment -> {
-
                     toolBar.apply {
                         setDisplayShowTitleEnabled(false)
                         setDisplayHomeAsUpEnabled(true)
                     }
-
                     binding.apply {
                         heroImage.visibility = View.VISIBLE
                         bottomNavigationView.visibility = View.GONE
                     }
-
                     floatingActionButton.visibility = View.GONE
-
                 }
 
                 R.id.detailFragment -> {
-                    toolBar.setDisplayShowTitleEnabled(false)
-                    toolBar.setDisplayHomeAsUpEnabled(true)
+                    toolBar.apply {
+                        setDisplayShowTitleEnabled(false)
+                        setDisplayHomeAsUpEnabled(true)
+                    }
+                    binding.apply {
+                        heroImage.visibility = View.VISIBLE
+                        bottomNavigationView.visibility = View.GONE
+                    }
                     floatingActionButton.visibility = View.VISIBLE
-                    binding.heroImage.visibility = View.VISIBLE
-                    binding.bottomNavigationView.visibility = View.GONE
                 }
 
                 else -> {
-                    toolBar.setDisplayShowTitleEnabled(true)
-                    toolBar.setDisplayHomeAsUpEnabled(false)
+                    toolBar.apply {
+                        setDisplayShowTitleEnabled(true)
+                        setDisplayHomeAsUpEnabled(false)
+                    }
+                    binding.apply {
+                        heroImage.visibility = View.VISIBLE
+                        bottomNavigationView.visibility = View.VISIBLE
+                    }
                     floatingActionButton.visibility = View.VISIBLE
-                    binding.heroImage.visibility = View.VISIBLE
-                    binding.bottomNavigationView.visibility = View.VISIBLE
                 }
-
             }
         }
     }

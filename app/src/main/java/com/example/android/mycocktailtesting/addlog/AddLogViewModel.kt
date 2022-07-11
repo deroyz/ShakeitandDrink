@@ -42,12 +42,20 @@ class AddLogViewModel(application: Application, private val logId: Int) :
         }
     }
 
-    fun takePhoto() {
+    fun checkInternalPermission(){
 
     }
 
-    fun openGallery() {
+    fun takePhoto() {
+        TODO("Not yet implemented")
+    }
 
+    fun openGallery() {
+        TODO("Not yet implemented")
+    }
+
+    fun onImgBttnClicked() {
+        TODO("Not yet implemented")
     }
 
 }
