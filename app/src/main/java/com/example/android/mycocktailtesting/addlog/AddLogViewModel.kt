@@ -54,7 +54,7 @@ class AddLogViewModel(application: Application, private val logId: Int) :
         TODO("Not yet implemented")
     }
 
-    fun onImgBttnClicked() {
+    fun onImageButtonClicked() {
         TODO("Not yet implemented")
     }
 

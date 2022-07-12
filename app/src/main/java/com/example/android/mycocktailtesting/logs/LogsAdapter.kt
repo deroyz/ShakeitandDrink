@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.android.mycocktailtesting.R
 import com.example.android.mycocktailtesting.databinding.ListLogBinding
 import com.example.android.mycocktailtesting.domain.DomainLog
 
@@ -16,10 +19,23 @@ class LogsAdapter(private val onClickListener: OnClickListener) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: DomainLog) {
-            binding.tvLogCocktailName.text = item.nameLog
-            binding.tvCocktailPrice.text = item.priceLog.toString()
-            binding.tvRating.text = item.ratingLog.toString()
-        }
+            binding.apply{
+                tvLogCocktailName.text = item.nameLog
+                tvCocktailPrice.text = item.priceLog.toString()
+                tvRating.text = item.ratingLog.toString()
+                tvComment.text = item.commentLog
+
+                ivLogCocktail
+                Glide.with(binding.ivLogCocktail.context)
+                    .load(R.drawable.ic_broken_image)
+                    .apply(
+                        RequestOptions()
+                            .placeholder(R.drawable.loading_animation)
+                            .error(R.drawable.ic_broken_image)
+                    )
+                    .into(binding.ivLogCocktail)
+            }
+                    }
 
         companion object {
             fun from(parent: ViewGroup): LogsViewHolder {

@@ -2,18 +2,20 @@ package com.example.android.mycocktailtesting.logs
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.mycocktailtesting.R
 import com.example.android.mycocktailtesting.databinding.FragmentLogsBinding
 
 
-class LogsFragment : Fragment() {
+class LogsFragment : Fragment(), MenuProvider {
 
     private lateinit var viewModel: LogsViewModel
 
@@ -22,7 +24,11 @@ class LogsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
 
+
     ): View? {
+
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         // Inflate Layout
         val binding = FragmentLogsBinding.inflate(inflater, container, false)
@@ -55,7 +61,17 @@ class LogsFragment : Fragment() {
 //                viewModel.navigateToSelectedLogComplete()
 //            }
 //        })
-
         return binding.root
+    }
+
+
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        // Add menu items here
+        menuInflater.inflate(R.menu.menu_item, menu)
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+
+        return true
     }
 }

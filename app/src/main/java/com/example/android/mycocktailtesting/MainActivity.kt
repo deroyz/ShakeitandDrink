@@ -3,6 +3,7 @@ package com.example.android.mycocktailtesting
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
             .navController
 
+
         binding.apply {
             setContentView(root)
             setSupportActionBar(toolbar)
@@ -42,8 +44,8 @@ class MainActivity : AppCompatActivity() {
             floatingActionButton.setOnClickListener(View.OnClickListener {
                 navController.navigate(R.id.addLogFragment)
             })
-
         }
+
         navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
             val toolBar = supportActionBar ?: return@addOnDestinationChangedListener
             when (destination.id) {

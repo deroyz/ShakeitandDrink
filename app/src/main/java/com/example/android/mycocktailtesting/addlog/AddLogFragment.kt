@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.android.mycocktailtesting.R
 import com.example.android.mycocktailtesting.databinding.FragmentAddLogBinding
 import com.example.android.mycocktailtesting.domain.DomainLog
 
@@ -35,7 +38,7 @@ class AddLogFragment : Fragment() {
         this.viewModel = viewModel
 
         binding.ivCocktailPhoto.setOnClickListener(View.OnClickListener {
-            viewModel.onImgBttnClicked()
+            viewModel.onImageButtonClicked()
         })
 
         binding.btnAdd.setOnClickListener(View.OnClickListener {
@@ -58,6 +61,15 @@ class AddLogFragment : Fragment() {
             binding.apply {
                 etCocktailName.setText(it.nameLog)
                 etPrice.setText(it.priceLog.toString())
+                ivCocktailPhoto
+                Glide.with(binding.ivCocktailPhoto.context)
+                    .load(R.drawable.ic_broken_image)
+                    .apply(
+                        RequestOptions()
+                            .placeholder(R.drawable.loading_animation)
+                            .error(R.drawable.ic_broken_image)
+                    )
+                    .into(binding.ivCocktailPhoto)
             }
         })
 
