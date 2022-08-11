@@ -15,7 +15,9 @@ import com.example.android.mycocktailtesting.R
 import com.example.android.mycocktailtesting.database.CocktailDatabaseFilter
 import com.example.android.mycocktailtesting.databinding.FragmentDrinksBinding
 import com.google.android.material.chip.Chip
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DrinksFragment : Fragment() {
 
     private lateinit var viewModel: DrinksViewModel
@@ -35,12 +37,8 @@ class DrinksFragment : Fragment() {
         // Inflate Layout
         val binding = FragmentDrinksBinding.inflate(inflater, container, false)
 
-        // Get required values
-        val activity = requireNotNull(this.activity)
-
         // Setup ViewModel
-        val viewModelFactory = DrinksViewModelFactory(activity.application)
-        val viewModel = ViewModelProvider(this, viewModelFactory)[DrinksViewModel::class.java]
+        val viewModel = ViewModelProvider(this)[DrinksViewModel::class.java]
         this.viewModel = viewModel
 
         // Setup RecyclerView
@@ -121,7 +119,8 @@ class DrinksFragment : Fragment() {
 
         viewModel.navigateToSelectedDrink.observe(viewLifecycleOwner, Observer {
             if (null != it) {
-                this.findNavController().navigate(DrinksFragmentDirections.actionShowDrinkDetail(it))
+                this.findNavController()
+                    .navigate(DrinksFragmentDirections.actionShowDrinkDetail(it))
                 viewModel.navigateToSelectedDrinkComplete()
             }
         })

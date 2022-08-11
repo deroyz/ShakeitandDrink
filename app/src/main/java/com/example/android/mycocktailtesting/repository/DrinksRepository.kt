@@ -11,8 +11,9 @@ import com.example.android.mycocktailtesting.network.asDatabaseModelPopularDrink
 import com.example.android.mycocktailtesting.network.asDatabaseModelRandomDrink
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class DrinksRepository(val database: DrinkDatabase) {
+class DrinksRepository @Inject constructor(val database: DrinkDatabase) {
 
     val filterList: List<String> = CocktailDatabaseFilter.values().map { it.value }
 
