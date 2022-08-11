@@ -8,8 +8,9 @@ import com.example.android.mycocktailtesting.domain.DomainLog
 import com.example.android.mycocktailtesting.domain.asDatabaseModelLog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class LogsRepository(val database: DrinkDatabase) {
+class LogsRepository @Inject constructor(val database: DrinkDatabase) {
 
     val domainLogList: LiveData<List<DomainLog>> =
         Transformations.map(database.logDao.getLogs()) {
