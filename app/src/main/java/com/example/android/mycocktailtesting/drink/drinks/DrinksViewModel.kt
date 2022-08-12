@@ -27,7 +27,9 @@ class DrinksViewModel @Inject constructor(drinksRepository: DrinksRepository) : 
     val filter = MutableLiveData<CocktailDatabaseFilter>()
     val navigateToSelectedDrink = MutableLiveData<Drink>()
 
-    val randomDrinkList = drinksRepository.randomDrinks
+    var randomDrinkList = MutableLiveData<List<Drink>>()
+
+//    val randomDrinkList = drinksRepository.randomDrinks
     val popularDrinkList = drinksRepository.popularDrinks
     val latestDrink = drinksRepository.latestDrinks
     val favoriteDrink = drinksRepository.favoriteDrinks
@@ -41,6 +43,7 @@ class DrinksViewModel @Inject constructor(drinksRepository: DrinksRepository) : 
             drinksRepository.refreshPopularDrinks()
             drinksRepository.refreshLatestDrinks()
         }
+        randomDrinkList = drinksRepository.randomDrinks as MutableLiveData<List<Drink>>
         filter.value = CocktailDatabaseFilter.SHOW_TODAYS
         filterList.value = drinksRepository.filterList
     }
