@@ -2,12 +2,9 @@ package com.example.android.mycocktailtesting.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.android.mycocktailtesting.database.DrinkDao
-import com.example.android.mycocktailtesting.database.DrinkDatabase
-import com.example.android.mycocktailtesting.database.LogDao
-import com.example.android.mycocktailtesting.domain.Drink
-import com.example.android.mycocktailtesting.repository.DrinksRepository
-import com.example.android.mycocktailtesting.repository.LogsRepository
+import com.example.android.mycocktailtesting.model.database.DrinkDao
+import com.example.android.mycocktailtesting.model.database.DrinkDatabase
+import com.example.android.mycocktailtesting.model.database.LogDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,14 +25,6 @@ object DatabaseModule {
     fun provideDrinkDao(database: DrinkDatabase): DrinkDao {
         return database.drinkDao
     }
-
-    @Provides
-    @Singleton
-    fun provideDrinksRepository(database: DrinkDatabase): DrinksRepository = DrinksRepository(database)
-
-    @Provides
-    @Singleton
-    fun provideLogsRepository(database: DrinkDatabase): LogsRepository = LogsRepository(database)
 
     @Provides
     @Singleton
