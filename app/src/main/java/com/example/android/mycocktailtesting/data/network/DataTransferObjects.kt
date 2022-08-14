@@ -1,8 +1,8 @@
-package com.example.android.mycocktailtesting.model.network
+package com.example.android.mycocktailtesting.data.network
 
-import com.example.android.mycocktailtesting.model.database.DatabaseLatestDrink
-import com.example.android.mycocktailtesting.model.database.DatabasePopularDrink
-import com.example.android.mycocktailtesting.model.database.DatabaseRandomDrink
+import com.example.android.mycocktailtesting.data.database.DatabaseLatestDrink
+import com.example.android.mycocktailtesting.data.database.DatabasePopularDrink
+import com.example.android.mycocktailtesting.data.database.DatabaseRandomDrink
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)

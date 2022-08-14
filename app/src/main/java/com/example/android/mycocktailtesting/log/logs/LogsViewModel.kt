@@ -5,10 +5,10 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.android.mycocktailtesting.model.database.getDatabase
-import com.example.android.mycocktailtesting.model.domain.DomainLog
+import com.example.android.mycocktailtesting.data.database.getDatabase
+import com.example.android.mycocktailtesting.data.domain.DomainLog
 
-import com.example.android.mycocktailtesting.model.repository.LogsRepository
+import com.example.android.mycocktailtesting.data.repository.LogsRepository
 
 class LogsViewModel(application: Application) : AndroidViewModel(application) {
 

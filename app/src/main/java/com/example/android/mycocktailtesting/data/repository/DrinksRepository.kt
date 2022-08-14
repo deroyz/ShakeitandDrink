@@ -1,11 +1,11 @@
-package com.example.android.mycocktailtesting.model.repository
+package com.example.android.mycocktailtesting.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.example.android.mycocktailtesting.model.database.*
-import com.example.android.mycocktailtesting.model.domain.Drink
-import com.example.android.mycocktailtesting.model.domain.asDatabaseModelFavoriteDrink
-import com.example.android.mycocktailtesting.model.network.*
+import com.example.android.mycocktailtesting.data.database.*
+import com.example.android.mycocktailtesting.data.domain.Drink
+import com.example.android.mycocktailtesting.data.domain.asDatabaseModelFavoriteDrink
+import com.example.android.mycocktailtesting.data.network.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -20,17 +20,17 @@ constructor(
     val filterList: List<String> = CocktailDatabaseFilter.values().map { it.value }
 
     val randomDrinks: LiveData<List<Drink>> =
-        Transformations.map(database.drinkDao.getRandomDrinks()) {
+        Transformations.map(database.drinkDao.getAllRandomDrinks()) {
             it.asDomainModelRandomDrink()
         }
 
     val popularDrinks: LiveData<List<Drink>> =
-        Transformations.map(database.drinkDao.getPopularDrinks()) {
+        Transformations.map(database.drinkDao.getAllPopularDrinks()) {
             it.asDomainModelPopularDrink()
         }
 
     val latestDrinks: LiveData<List<Drink>> =
-        Transformations.map(database.drinkDao.getLatestDrinks()) {
+        Transformations.map(database.drinkDao.getAllLatestDrinks()) {
             it.asDomainModelLatestDrink()
         }
 

@@ -1,6 +1,6 @@
 package com.example.android.mycocktailtesting.di
 
-import com.example.android.mycocktailtesting.model.network.CocktailDBService
+import com.example.android.mycocktailtesting.data.network.CocktailDBService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

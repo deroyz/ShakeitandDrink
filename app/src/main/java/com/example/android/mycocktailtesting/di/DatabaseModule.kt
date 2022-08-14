@@ -2,9 +2,9 @@ package com.example.android.mycocktailtesting.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.android.mycocktailtesting.model.database.DrinkDao
-import com.example.android.mycocktailtesting.model.database.DrinkDatabase
-import com.example.android.mycocktailtesting.model.database.LogDao
+import com.example.android.mycocktailtesting.data.database.DrinkDao
+import com.example.android.mycocktailtesting.data.database.DrinkDatabase
+import com.example.android.mycocktailtesting.data.database.LogDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

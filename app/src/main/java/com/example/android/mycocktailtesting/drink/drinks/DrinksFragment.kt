@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.mycocktailtesting.R
-import com.example.android.mycocktailtesting.model.database.CocktailDatabaseFilter
+import com.example.android.mycocktailtesting.data.database.CocktailDatabaseFilter
 import com.example.android.mycocktailtesting.databinding.FragmentDrinksBinding
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint

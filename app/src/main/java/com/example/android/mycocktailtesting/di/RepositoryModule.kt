@@ -1,9 +1,9 @@
 package com.example.android.mycocktailtesting.di
 
-import com.example.android.mycocktailtesting.model.database.DrinkDatabase
-import com.example.android.mycocktailtesting.model.network.CocktailDBService
-import com.example.android.mycocktailtesting.model.repository.DrinksRepository
-import com.example.android.mycocktailtesting.model.repository.LogsRepository
+import com.example.android.mycocktailtesting.data.database.DrinkDatabase
+import com.example.android.mycocktailtesting.data.network.CocktailDBService
+import com.example.android.mycocktailtesting.data.repository.DrinksRepository
+import com.example.android.mycocktailtesting.data.repository.LogsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -2,8 +2,8 @@ package com.example.android.mycocktailtesting.drink.detail
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.android.mycocktailtesting.model.domain.Drink
-import com.example.android.mycocktailtesting.model.repository.DrinksRepository
+import com.example.android.mycocktailtesting.data.domain.Drink
+import com.example.android.mycocktailtesting.data.repository.DrinksRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

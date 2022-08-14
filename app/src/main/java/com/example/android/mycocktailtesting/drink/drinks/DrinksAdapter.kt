@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.android.mycocktailtesting.R
 import com.example.android.mycocktailtesting.databinding.ListDrinkBinding
-import com.example.android.mycocktailtesting.model.domain.Drink
+import com.example.android.mycocktailtesting.data.domain.Drink
 
 class DrinksAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<Drink, DrinksAdapter.DrinksViewHolder>(DrinkDiffCallback()) {

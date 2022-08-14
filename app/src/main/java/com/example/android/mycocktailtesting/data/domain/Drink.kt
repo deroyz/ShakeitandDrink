@@ -1,8 +1,8 @@
-package com.example.android.mycocktailtesting.model.domain
+package com.example.android.mycocktailtesting.data.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import com.example.android.mycocktailtesting.model.database.DatabaseFavoriteDrink as DatabaseFavoriteDrink
+import com.example.android.mycocktailtesting.data.database.DatabaseFavoriteDrink as DatabaseFavoriteDrink
 
 @Parcelize
 data class Drink(

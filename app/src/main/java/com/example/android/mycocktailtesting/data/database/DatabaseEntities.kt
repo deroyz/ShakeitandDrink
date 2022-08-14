@@ -14,12 +14,12 @@
  * limitations under the License.
  *
  */
-package com.example.android.mycocktailtesting.model.database
+package com.example.android.mycocktailtesting.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.android.mycocktailtesting.model.domain.Drink
-import com.example.android.mycocktailtesting.model.domain.DomainLog
+import com.example.android.mycocktailtesting.data.domain.Drink
+import com.example.android.mycocktailtesting.data.domain.DomainLog
 
 @Entity(tableName = "randomdrinks")
 data class DatabaseRandomDrink constructor(

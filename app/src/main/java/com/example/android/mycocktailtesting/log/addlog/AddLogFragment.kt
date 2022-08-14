@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.android.mycocktailtesting.R
 import com.example.android.mycocktailtesting.databinding.FragmentAddLogBinding
-import com.example.android.mycocktailtesting.model.domain.DomainLog
+import com.example.android.mycocktailtesting.data.domain.DomainLog
 
 
 class AddLogFragment : Fragment() {
