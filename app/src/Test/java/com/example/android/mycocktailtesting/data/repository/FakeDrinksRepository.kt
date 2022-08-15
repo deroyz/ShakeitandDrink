@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 
 class FakeDrinksRepository : DrinksRepository {
 
-    val drinksListFromApi = listOf<NetworkDrink>()
+    private val drinksListFromApi = listOf<NetworkDrink>()
 
     private val randomDrinks = mutableListOf<DatabaseRandomDrink>()
     private val allRandomDrinks = MutableLiveData<List<DatabaseRandomDrink>>(randomDrinks)
