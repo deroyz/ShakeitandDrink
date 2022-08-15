@@ -1,6 +1,7 @@
 package com.example.android.mycocktailtesting.di
 
-import com.example.android.mycocktailtesting.data.network.CocktailDBService
+import com.example.android.mycocktailtesting.other.Constants.BASE_URL
+import com.example.android.mycocktailtesting.data.network.CocktailDbAPI
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -16,22 +17,19 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "https://www.thecocktaildb.com/api/json/v2/9973533/"
-
     @Provides
     @Singleton
-    fun provideCocktailDbService(): CocktailDBService {
+    fun provideCocktailDbService(): CocktailDbAPI {
+        val moshi = MoshiConverterFactory.create(
+            Moshi.Builder()
+                .add(KotlinJsonAdapterFactory())
+                .build()
+        )
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(
-                MoshiConverterFactory.create(
-                    Moshi.Builder()
-                        .add(KotlinJsonAdapterFactory())
-                        .build()
-                )
-            )
+            .addConverterFactory(moshi)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
-            .create(CocktailDBService::class.java)
+            .create(CocktailDbAPI::class.java)
     }
 }

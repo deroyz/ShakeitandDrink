@@ -3,14 +3,14 @@ package com.example.android.mycocktailtesting.drink.detail
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.android.mycocktailtesting.data.domain.Drink
-import com.example.android.mycocktailtesting.data.repository.DrinksRepository
+import com.example.android.mycocktailtesting.data.repository.DefaultDrinksRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val drinksRepository: DrinksRepository,
+    private val defaultDrinksRepository: DefaultDrinksRepository,
     private val state: SavedStateHandle
 ) :
     ViewModel() {
@@ -28,7 +28,7 @@ class DetailViewModel @Inject constructor(
 
     private fun initializeFavorite(drink: Drink) {
         viewModelScope.launch {
-            isFavorite.value = drinksRepository.checkIsFavorite(drink.idDrink)
+            isFavorite.value = defaultDrinksRepository.checkIsFavorite(drink.idDrink)
             println("${isFavorite.value}")
         }
     }
@@ -40,7 +40,7 @@ class DetailViewModel @Inject constructor(
             if (isFavorite.value == true) {
                 favoriteBtnActive(it)
             } else {
-                favoriteBtnInactive(it.idDrink)
+                favoriteBtnInactive(it)
             }
         }
     }
@@ -48,14 +48,14 @@ class DetailViewModel @Inject constructor(
     private fun favoriteBtnActive(drink: Drink) {
         Log.e("DetailViewModel", "favoriteBtnActive")
         viewModelScope.launch {
-            drinksRepository.insertFavoriteDrink(drink)
+            defaultDrinksRepository.insertFavoriteDrink(drink)
         }
     }
 
-    private fun favoriteBtnInactive(idDrink: Double) {
+    private fun favoriteBtnInactive(drink: Drink) {
         Log.e("DetailViewModel", "favoriteBtnInactive")
         viewModelScope.launch {
-            drinksRepository.deleteFavoriteDrink(idDrink)
+            defaultDrinksRepository.deleteFavoriteDrink(drink)
             Log.e("DetailViewModel", "Selected ID deleted from the favorite table")
         }
     }

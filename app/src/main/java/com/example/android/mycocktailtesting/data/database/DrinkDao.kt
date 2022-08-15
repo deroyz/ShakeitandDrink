@@ -34,7 +34,7 @@ interface DrinkDao {
 
     // FavoriteDrinks DAO
     @Query("SELECT * FROM favoritedrinks")
-    fun getFavoriteDrinks(): LiveData<List<DatabaseFavoriteDrink>>
+    fun getAllFavoriteDrinks(): LiveData<List<DatabaseFavoriteDrink>>
 
     @Query("SELECT EXISTS(SELECT * FROM favoritedrinks WHERE idDrink = :id)")
     fun checkFavoriteById(id: Double): Boolean
@@ -43,5 +43,5 @@ interface DrinkDao {
     fun insertFavoriteDrink(newFavoriteDrink: DatabaseFavoriteDrink)
 
     @Query("DELETE FROM favoritedrinks WHERE idDrink = :id")
-    fun deleteFavoriteDrink(id: Double)
+    fun deleteFavoriteDrinkById(id: Double)
 }

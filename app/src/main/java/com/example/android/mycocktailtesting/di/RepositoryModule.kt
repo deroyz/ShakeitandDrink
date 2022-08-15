@@ -1,8 +1,8 @@
 package com.example.android.mycocktailtesting.di
 
 import com.example.android.mycocktailtesting.data.database.DrinkDatabase
-import com.example.android.mycocktailtesting.data.network.CocktailDBService
-import com.example.android.mycocktailtesting.data.repository.DrinksRepository
+import com.example.android.mycocktailtesting.data.network.CocktailDbAPI
+import com.example.android.mycocktailtesting.data.repository.DefaultDrinksRepository
 import com.example.android.mycocktailtesting.data.repository.LogsRepository
 import dagger.Module
 import dagger.Provides
@@ -16,10 +16,10 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideDrinksRepository(
+    fun provideDefaultDrinksRepository(
         database: DrinkDatabase,
-        cocktailDBService: CocktailDBService
-    ): DrinksRepository = DrinksRepository(database, cocktailDBService)
+        cocktailDbAPI: CocktailDbAPI
+    ): DefaultDrinksRepository = DefaultDrinksRepository(database, cocktailDbAPI)
 
     @Provides
     @Singleton

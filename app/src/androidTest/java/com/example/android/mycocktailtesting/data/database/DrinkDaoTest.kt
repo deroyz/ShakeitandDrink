@@ -77,7 +77,7 @@ class DrinkDaoTest {
         drinkDao.insertFavoriteDrink(favoriteDrink)
 
         // Verify
-        val allFavoriteDrink = drinkDao.getFavoriteDrinks().getOrAwaitValue()
+        val allFavoriteDrink = drinkDao.getAllFavoriteDrinks().getOrAwaitValue()
         assertThat(allFavoriteDrink).contains(favoriteDrink)
     }
 
@@ -96,10 +96,10 @@ class DrinkDaoTest {
         drinkDao.insertFavoriteDrink(favoriteDrink)
 
         // Operate
-        drinkDao.deleteFavoriteDrink(favoriteDrink.idDrink)
+        drinkDao.deleteFavoriteDrinkById(favoriteDrink.idDrink)
 
         // Verify
-        val allFavoriteDrink = drinkDao.getFavoriteDrinks().getOrAwaitValue()
+        val allFavoriteDrink = drinkDao.getAllFavoriteDrinks().getOrAwaitValue()
         assertThat(allFavoriteDrink).doesNotContain(allFavoriteDrink)
     }
 

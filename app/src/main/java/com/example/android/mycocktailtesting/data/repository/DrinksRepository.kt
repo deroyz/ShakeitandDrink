@@ -5,79 +5,34 @@ import androidx.lifecycle.Transformations
 import com.example.android.mycocktailtesting.data.database.*
 import com.example.android.mycocktailtesting.data.domain.Drink
 import com.example.android.mycocktailtesting.data.domain.asDatabaseModelFavoriteDrink
-import com.example.android.mycocktailtesting.data.network.*
+import com.example.android.mycocktailtesting.data.network.asDatabaseModelLatestDrink
+import com.example.android.mycocktailtesting.data.network.asDatabaseModelPopularDrink
+import com.example.android.mycocktailtesting.data.network.asDatabaseModelRandomDrink
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class DrinksRepository
-@Inject
-constructor(
-    private val database: DrinkDatabase,
-    private val cocktailDBService: CocktailDBService
-) {
+interface DrinksRepository {
 
-    val filterList: List<String> = CocktailDatabaseFilter.values().map { it.value }
+    fun getFilterList(): List<String>
 
-    val randomDrinks: LiveData<List<Drink>> =
-        Transformations.map(database.drinkDao.getAllRandomDrinks()) {
-            it.asDomainModelRandomDrink()
-        }
+    fun getAllRandomDrinks(): LiveData<List<Drink>>
 
-    val popularDrinks: LiveData<List<Drink>> =
-        Transformations.map(database.drinkDao.getAllPopularDrinks()) {
-            it.asDomainModelPopularDrink()
-        }
+    fun getAllPopularDrinks(): LiveData<List<Drink>>
 
-    val latestDrinks: LiveData<List<Drink>> =
-        Transformations.map(database.drinkDao.getAllLatestDrinks()) {
-            it.asDomainModelLatestDrink()
-        }
+    fun getAllLatestDrinks(): LiveData<List<Drink>>
 
-    val favoriteDrinks: LiveData<List<Drink>> =
-        Transformations.map(database.drinkDao.getFavoriteDrinks()) {
-            it.asDomainModelFavoriteDrink()
-        }
+    fun getAllFavoriteDrinks(): LiveData<List<Drink>>
 
-    suspend fun refreshRandomDrinks() {
-        withContext(Dispatchers.IO) {
-            val randomCocktails = cocktailDBService.getRandomCocktails().await()
-            database.drinkDao.insertAllRandomDrinks(*randomCocktails.asDatabaseModelRandomDrink())
-        }
-    }
+    suspend fun refreshRandomDrinks()
 
-    suspend fun refreshPopularDrinks() {
-        withContext(Dispatchers.IO) {
-            val popularCocktails = cocktailDBService.getPopularCocktails().await()
-            database.drinkDao.insertAllPopularDrinks(*popularCocktails.asDatabaseModelPopularDrink())
-        }
-    }
+    suspend fun refreshPopularDrinks()
 
-    suspend fun refreshLatestDrinks() {
-        withContext(Dispatchers.IO) {
-            val latestCocktails = cocktailDBService.getLatestCocktails().await()
-            database.drinkDao.insertAllLatestDrinks(*latestCocktails.asDatabaseModelLatestDrink())
-        }
-    }
+    suspend fun refreshLatestDrinks()
 
-    // Favorite Check, Insert, Delete
-    suspend fun checkIsFavorite(idDrink: Double): Boolean {
-        return withContext(Dispatchers.IO) {
-            database.drinkDao.checkFavoriteById(idDrink)
-        }
-    }
+    suspend fun checkIsFavorite(idDrink: Double): Boolean
 
-    suspend fun insertFavoriteDrink(drink: Drink) {
-        withContext(Dispatchers.IO) {
-            database.drinkDao.insertFavoriteDrink(drink.asDatabaseModelFavoriteDrink())
-        }
-    }
+    suspend fun insertFavoriteDrink(drink: Drink)
 
-    suspend fun deleteFavoriteDrink(idDrink: Double) {
-        withContext(Dispatchers.IO) {
-            database.drinkDao.deleteFavoriteDrink(idDrink)
-        }
-    }
+    suspend fun deleteFavoriteDrink(drink: Drink)
 
 }
-
