@@ -1,4 +1,4 @@
-package com.example.android.mycocktailtesting.drink.drinks
+package com.example.android.mycocktailtesting.ui.drinks
 
 import android.os.Bundle
 import android.util.Log

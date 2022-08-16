@@ -1,4 +1,4 @@
-package com.example.android.mycocktailtesting.log.addlog
+package com.example.android.mycocktailtesting.ui.addlog
 
 import android.app.Application
 import android.util.Log

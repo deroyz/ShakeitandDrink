@@ -1,4 +1,4 @@
-package com.example.android.mycocktailtesting.log.logs
+package com.example.android.mycocktailtesting.ui.logs
 
 import android.os.Bundle
 import android.view.*

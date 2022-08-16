@@ -1,4 +1,4 @@
-package com.example.android.mycocktailtesting.ingredient.inventory
+package com.example.android.mycocktailtesting.ui.inventory
 
 import android.os.Bundle
 import android.view.LayoutInflater

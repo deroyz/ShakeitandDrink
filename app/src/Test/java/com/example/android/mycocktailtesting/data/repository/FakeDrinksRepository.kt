@@ -29,7 +29,6 @@ class FakeDrinksRepository : DrinksRepository {
     private val allFavoriteDrinks = MutableLiveData<List<DatabaseFavoriteDrink>>(favoriteDrinks)
 
     private var isFavorite = true
-
     private var shouldReturnNetworkError = false
 
     fun setShouldReturnNetworkError(value: Boolean) {

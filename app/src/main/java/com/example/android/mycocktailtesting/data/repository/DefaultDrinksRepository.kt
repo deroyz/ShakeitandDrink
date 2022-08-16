@@ -21,7 +21,7 @@ constructor(
         return CocktailDatabaseFilter.values().map { it.value }
     }
 
-    override fun getAllRandomDrinks(): LiveData<List<Drink>> {
+    override fun    getAllRandomDrinks(): LiveData<List<Drink>> {
         return Transformations.map(drinkDatabase.drinkDao.getAllRandomDrinks()) {
             it.asDomainModelRandomDrink()
         }

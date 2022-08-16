@@ -1,4 +1,4 @@
-package com.example.android.mycocktailtesting.drink.drinks
+package com.example.android.mycocktailtesting.ui.drinks
 
 import android.util.Log
 import androidx.lifecycle.*
@@ -28,10 +28,10 @@ class DrinksViewModel @Inject constructor(defaultDrinksRepository: DefaultDrinks
     val filter = MutableLiveData<CocktailDatabaseFilter>()
     val navigateToSelectedDrink = MutableLiveData<Drink>()
 
-    var randomDrinkList = MutableLiveData<List<Drink>>()
-    var popularDrinkList = MutableLiveData<List<Drink>>()
-    var latestDrink = MutableLiveData<List<Drink>>()
-    var favoriteDrink = MutableLiveData<List<Drink>>()
+    var randomDrinkList = defaultDrinksRepository.getAllRandomDrinks()
+    var popularDrinkList = defaultDrinksRepository.getAllPopularDrinks()
+    var latestDrink = defaultDrinksRepository.getAllLatestDrinks()
+    var favoriteDrink =  defaultDrinksRepository.getAllFavoriteDrinks()
 
     init {
         Log.e("DrinkViewModel", "DrinkViewModel Init")
@@ -41,20 +41,8 @@ class DrinksViewModel @Inject constructor(defaultDrinksRepository: DefaultDrinks
             defaultDrinksRepository.refreshPopularDrinks()
             defaultDrinksRepository.refreshLatestDrinks()
         }
-        getDrinksLists(defaultDrinksRepository)
         filter.value = CocktailDatabaseFilter.SHOW_TODAYS
         filterList.value = defaultDrinksRepository.getFilterList()
-    }
-
-    private fun getDrinksLists(defaultDrinksRepository: DefaultDrinksRepository) {
-        randomDrinkList =
-            defaultDrinksRepository.getAllRandomDrinks() as MutableLiveData<List<Drink>>
-        popularDrinkList =
-            defaultDrinksRepository.getAllPopularDrinks() as MutableLiveData<List<Drink>>
-        latestDrink =
-            defaultDrinksRepository.getAllLatestDrinks() as MutableLiveData<List<Drink>>
-        favoriteDrink =
-            defaultDrinksRepository.getAllFavoriteDrinks() as MutableLiveData<List<Drink>>
     }
 
     fun updateFilter(filter: CocktailDatabaseFilter) {
