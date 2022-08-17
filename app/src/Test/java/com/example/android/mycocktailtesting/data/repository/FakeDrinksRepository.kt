@@ -97,4 +97,5 @@ class FakeDrinksRepository : DrinksRepository {
         favoriteDrinks.remove(drink.asDatabaseModelFavoriteDrink())
         refreshLiveData()
     }
+
 }

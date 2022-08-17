@@ -5,44 +5,36 @@ import androidx.lifecycle.*
 import com.example.android.mycocktailtesting.data.database.CocktailDatabaseFilter
 import com.example.android.mycocktailtesting.data.domain.Drink
 import com.example.android.mycocktailtesting.data.repository.DefaultDrinksRepository
+import com.example.android.mycocktailtesting.data.repository.DrinksRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DrinksViewModel @Inject constructor(defaultDrinksRepository: DefaultDrinksRepository) :
+class DrinksViewModel @Inject constructor(drinksRepository: DrinksRepository) :
     ViewModel() {
 
     enum class CocktailApiStatus { LOADING, ERROR, DONE }
-
-    //    // The internal MutableLiveData String that stores the status of the most recent request
-//    private val _status = MutableLiveData<CocktailApiStatus>()
-//
-//    // The external immutable LiveData for the request status String
-//    val status: LiveData<CocktailApiStatus>
-//        get() = _status
-
-//    var drinksRepository = DrinksRepository(database)
 
     val filterList = MutableLiveData<List<String>>()
     val filter = MutableLiveData<CocktailDatabaseFilter>()
     val navigateToSelectedDrink = MutableLiveData<Drink>()
 
-    var randomDrinkList = defaultDrinksRepository.getAllRandomDrinks()
-    var popularDrinkList = defaultDrinksRepository.getAllPopularDrinks()
-    var latestDrink = defaultDrinksRepository.getAllLatestDrinks()
-    var favoriteDrink =  defaultDrinksRepository.getAllFavoriteDrinks()
+    var randomDrinkList = drinksRepository.getAllRandomDrinks()
+    var popularDrinkList = drinksRepository.getAllPopularDrinks()
+    var latestDrink = drinksRepository.getAllLatestDrinks()
+    var favoriteDrink =  drinksRepository.getAllFavoriteDrinks()
 
     init {
         Log.e("DrinkViewModel", "DrinkViewModel Init")
 
         viewModelScope.launch {
-            defaultDrinksRepository.refreshRandomDrinks()
-            defaultDrinksRepository.refreshPopularDrinks()
-            defaultDrinksRepository.refreshLatestDrinks()
+            drinksRepository.refreshRandomDrinks()
+            drinksRepository.refreshPopularDrinks()
+            drinksRepository.refreshLatestDrinks()
         }
         filter.value = CocktailDatabaseFilter.SHOW_TODAYS
-        filterList.value = defaultDrinksRepository.getFilterList()
+        filterList.value = drinksRepository.getFilterList()
     }
 
     fun updateFilter(filter: CocktailDatabaseFilter) {
