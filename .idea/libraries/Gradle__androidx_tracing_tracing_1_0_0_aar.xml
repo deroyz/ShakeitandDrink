@@ -4,8 +4,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/67d07b777e83d33bb10df35342aa0522/transformed/tracing-1.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/80de10b28951929374f8cc18f2b511a0/transformed/tracing-1.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2991d9bf97d4831498860b0f933f05e2/transformed/jetified-tracing-1.0.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/80de10b28951929374f8cc18f2b511a0/transformed/tracing-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/80de10b28951929374f8cc18f2b511a0/transformed/tracing-1.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/aecaff0504b57b296e47858b1bbfff65/transformed/tracing-1.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/aecaff0504b57b296e47858b1bbfff65/transformed/tracing-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/aecaff0504b57b296e47858b1bbfff65/transformed/tracing-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

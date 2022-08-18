@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.room:room-coroutines:2.1.0-alpha04@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a8858e23472c159b6473ae9902b019ef/transformed/room-coroutines-2.1.0-alpha04/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a8858e23472c159b6473ae9902b019ef/transformed/room-coroutines-2.1.0-alpha04/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a8858e23472c159b6473ae9902b019ef/transformed/room-coroutines-2.1.0-alpha04/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2500c56b758d2f465eac5f1e69b69ef2/transformed/room-coroutines-2.1.0-alpha04/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2500c56b758d2f465eac5f1e69b69ef2/transformed/room-coroutines-2.1.0-alpha04/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2500c56b758d2f465eac5f1e69b69ef2/transformed/room-coroutines-2.1.0-alpha04/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
