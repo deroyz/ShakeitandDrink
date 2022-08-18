@@ -20,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DrinksFragment : Fragment() {
 
     private lateinit var viewModel: DrinksViewModel
+   // private var viewModel: DrinksViewModel by lazy viewmodels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -123,8 +124,12 @@ class DrinksFragment : Fragment() {
                 viewModel.navigateToSelectedDrinkComplete()
             }
         })
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.onCreated()
     }
 }
 

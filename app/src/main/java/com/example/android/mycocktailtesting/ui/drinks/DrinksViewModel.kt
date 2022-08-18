@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DrinksViewModel @Inject constructor(drinksRepository: DrinksRepository) :
+class DrinksViewModel @Inject constructor(val drinksRepository: DrinksRepository) :
     ViewModel() {
 
     enum class CocktailApiStatus { LOADING, ERROR, DONE }
@@ -20,10 +20,10 @@ class DrinksViewModel @Inject constructor(drinksRepository: DrinksRepository) :
     val filter = MutableLiveData<CocktailDatabaseFilter>()
     val navigateToSelectedDrink = MutableLiveData<Drink>()
 
-    var randomDrinkList = drinksRepository.getAllRandomDrinks()
-    var popularDrinkList = drinksRepository.getAllPopularDrinks()
-    var latestDrink = drinksRepository.getAllLatestDrinks()
-    var favoriteDrink =  drinksRepository.getAllFavoriteDrinks()
+    var randomDrinkList = MutableLiveData<List<Drink>>()
+    var popularDrinkList = MutableLiveData<List<Drink>>()
+    var latestDrink = MutableLiveData<List<Drink>>()
+    var favoriteDrink =  MutableLiveData<List<Drink>>()
 
     init {
         Log.e("DrinkViewModel", "DrinkViewModel Init")
@@ -35,10 +35,22 @@ class DrinksViewModel @Inject constructor(drinksRepository: DrinksRepository) :
         }
         filter.value = CocktailDatabaseFilter.SHOW_TODAYS
         filterList.value = drinksRepository.getFilterList()
+        getLists()
+
+    }
+
+    fun onCreated(){
+    }
+
+    fun getLists(){
+         randomDrinkList.value = drinksRepository.getAllRandomDrinks().value
+         popularDrinkList.value = drinksRepository.getAllPopularDrinks().value
+         latestDrink.value = drinksRepository.getAllLatestDrinks().value
+         favoriteDrink.value =  drinksRepository.getAllFavoriteDrinks().value
     }
 
     fun updateFilter(filter: CocktailDatabaseFilter) {
-        Log.e("ViewModel", "updateFilter to $filter")
+        //Log.e("ViewModel", "updateFilter to $filter")
         this.filter.value = filter
     }
 
